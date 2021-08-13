@@ -40,7 +40,7 @@ yarn add easy-app-builder -D
 
 Add bellow script to your scripts in package.json as "build-apps"
 ```bash
-cd node_modules/easy-app-builder && npm run start
+cd node_modules/easy-app-builder && npm i && npm run start
 ```
 <br>
  Then run "build-apps" script
