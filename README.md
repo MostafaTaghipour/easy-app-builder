@@ -2,6 +2,7 @@
 
 
 [![npm](https://img.shields.io/npm/v/easy-app-builder.svg)](https://www.npmjs.com/package/easy-app-builder)
+[![GitHub License][LICENSE BADGE]][LICENSE PAGE]
 
 easy App Builder is an release-automation library that helps you to build and publish your applications easily and visually, and also provides you with many other features and tools.
 
@@ -52,4 +53,7 @@ and enjoy it :)
 
 
 ## Author
-Mostafa Taghipour, mostafa@taghipour.me
+Mostafa Taghipour, mostafa.taghipoor@gmail.com
+
+## License
+easy-app-builder is available under the MIT license. See the LICENSE file for more info.

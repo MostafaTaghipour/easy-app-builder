@@ -10,7 +10,9 @@
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\"",
     "postinstall": "patch-package",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "npm pubilsh",
+    "deploy:digikala": "npm publish --registry https://npm.digikala.com"
   },
   "repository": {
     "type": "git",
@@ -29,8 +31,8 @@
     "ios",
     "react-native"
   ],
-  "author": "Mostafa Taghipour",
-  "license": "ISC",
+  "author": "Mostafa Taghipour <mostafa.taghipoor@gmail.com>",
+  "license": "MIT",
   "config": {
     "forge": {
       "packagerConfig": {},
