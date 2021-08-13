@@ -2,11 +2,12 @@
 
 
 [![npm](https://img.shields.io/npm/v/easy-app-builder.svg)](https://www.npmjs.com/package/easy-app-builder)
-[![GitHub License][LICENSE BADGE]][LICENSE PAGE]
+[![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 
 easy App Builder is an release-automation library that helps you to build and publish your applications easily and visually, and also provides you with many other features and tools.
 
 In the following you watch the Easy App Builder introducing video.
+
 [![VIDEO](https://raw.githubusercontent.com/MostafaTaghipour/easy-app-builder/main/src/assets/help/videoScreenshot.png)](https://www.aparat.com/v/p0tK3)
 
 
@@ -51,7 +52,7 @@ npm run build-apps
 <br>
 and enjoy it :)
 
-
+<br>
 ## Author
 Mostafa Taghipour, mostafa.taghipoor@gmail.com
 

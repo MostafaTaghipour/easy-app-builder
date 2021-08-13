@@ -1,6 +1,6 @@
 {
   "name": "easy-app-builder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Build and publish your Apps as easy as pie",
   "main": "src/index.js",
   "scripts": {
@@ -86,6 +86,7 @@
     "tree-kill": "^1.2.2",
     "unzipper": "^0.10.11",
     "util": "^0.12.4",
+    "patch-package": "^6.4.7",
     "whatsapp-web-electron.js": "github:Zzombiee2361/whatsapp-web-electron.js"
   },
   "devDependencies": {
@@ -95,8 +96,7 @@
     "@electron-forge/maker-squirrel": "^6.0.0-beta.59",
     "@electron-forge/maker-zip": "^6.0.0-beta.59",
     "electron": "13.1.8",
-    "electron-reloader": "^1.2.1",
-    "patch-package": "^6.4.7"
+    "electron-reloader": "^1.2.1"
   },
   "bugs": {
     "url": "https://github.com/MostafaTaghipour/easy-app-builder/issues"
