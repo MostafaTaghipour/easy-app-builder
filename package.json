@@ -1,6 +1,6 @@
 {
   "name": "easy-app-builder",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Build and publish your Apps as easy as pie",
   "main": "src/index.js",
   "scripts": {
@@ -61,11 +61,15 @@
     }
   },
   "dependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.59",
     "@electron/remote": "^1.2.1",
     "@mtproto/core": "6.0.1",
     "adbkit": "^2.11.1",
     "app-info-parser": "file:./packages/app-info-parser",
+    "bytebuffer": "^5.0.1",
+    "cgbi-to-png": "^1.0.7",
     "child_process": "^1.0.2",
+    "electron": "13.1.8",
     "electron-context-menu": "^3.1.1",
     "electron-prompt": "^1.6.2",
     "electron-squirrel-startup": "^1.0.0",
@@ -73,9 +77,11 @@
     "events": "^3.3.0",
     "googleapis": "^83.0.0",
     "ios-deploy": "^1.11.4",
+    "isomorphic-unzip": "^1.1.5",
     "mime-types": "^2.1.32",
     "node-simctl": "^6.4.1",
     "node-zip": "^1.1.1",
+    "patch-package": "^6.4.7",
     "playup": "^1.1.0",
     "puppeteer-core": "^10.2.0",
     "puppeteer-in-electron": "^3.0.5",
@@ -86,18 +92,15 @@
     "tree-kill": "^1.2.2",
     "unzipper": "^0.10.11",
     "util": "^0.12.4",
-    "patch-package": "^6.4.7",
-    "whatsapp-web-electron.js": "github:Zzombiee2361/whatsapp-web-electron.js",
-    "@electron-forge/cli": "^6.0.0-beta.59",
-    "electron": "13.1.8"
+    "whatsapp-web-electron.js": "github:Zzombiee2361/whatsapp-web-electron.js"
   },
   "devDependencies": {
     "@electron-forge/maker-deb": "^6.0.0-beta.59",
     "@electron-forge/maker-rpm": "^6.0.0-beta.59",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.59",
     "@electron-forge/maker-zip": "^6.0.0-beta.59",
-    "electron-reloader": "^1.2.1",
-    "electron": "13.1.8"
+    "electron": "13.1.8",
+    "electron-reloader": "^1.2.1"
   },
   "bugs": {
     "url": "https://github.com/MostafaTaghipour/easy-app-builder/issues"
