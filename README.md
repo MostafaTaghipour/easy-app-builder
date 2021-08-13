@@ -28,12 +28,12 @@ In the following you watch the Easy App Builder introducing video.
 ### Install
 Install package using npm
 ```bash
-npm install easy-app-builder --save-dev
+npm install easy-app-builder electron --save-dev
 ```
 
 or using yarn
 ```bash
-yarn add easy-app-builder -D
+yarn add easy-app-builder electron -D
 ```
 
 ### Run 

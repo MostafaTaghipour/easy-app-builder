@@ -1,6 +1,6 @@
 {
   "name": "easy-app-builder",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "description": "Build and publish your Apps as easy as pie",
   "main": "src/index.js",
   "scripts": {
@@ -69,7 +69,6 @@
     "bytebuffer": "^5.0.1",
     "cgbi-to-png": "^1.0.7",
     "child_process": "^1.0.2",
-    "electron": "13.1.8",
     "electron-context-menu": "^3.1.1",
     "electron-prompt": "^1.6.2",
     "electron-squirrel-startup": "^1.0.0",
