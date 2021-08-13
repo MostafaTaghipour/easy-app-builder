@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Easy App Builder - Deploy on AppStore</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/appStore.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h4 id="title"></h4>
+        <div id="info-section" class="col">
+
+            <div class="item col">
+                <label>Recent Changes in English</label>
+                <textarea type="text" id="changesEnInput" rows="3"></textarea>
+                <span>The changes of this version in English.</span>
+            </div>
+            <div class="item col">
+                <label>Recent Changes in Farsi</label>
+                <textarea type="text" id="changesFaInput" rows="3"></textarea>
+                <span>The changes of this version in Farsi.</span>
+            </div>
+
+            <div class="actions">
+                <button class="button secondary-button btnClose">Cancel</button>
+                <button class="button primary-button" id="btnUpload">Start Uploading</button>
+            </div>
+
+        </div>
+
+        <div id="upload-section" class="col">
+            <span id="progress-text">Uploading ...</span>
+            <div class="progress-bar indeterminate">
+                <div class="progress-bar-value" id="progress"></div>
+            </div>
+        </div>
+        <div id="proccess-section" class="col">
+
+            <div class="row">
+                <img src="./assets/images/building_animated.svg" alt="" class="building-icon">
+                <span>Proccessing uploaded file...</span>
+            </div>
+        </div>
+        <div id="success-section" class="col">
+
+            <img src="assets/images/ic_ok.png" />
+            <span>The app deployment was successful</span>
+
+            <div class="actions">
+                <button class="button primary-button btnClose">Done</button>
+            </div>
+        </div>
+        <div id="fail-section" class="col">
+
+            <img src="assets/images/ic_cancel.png" />
+            <span>Unfortunately the app deployment failed</span>
+            <span class="error" id="errorMessage"></span>
+
+
+            <div class="actions">
+                <button class="button secondary-button btnClose">Cancel</button>
+                <button class="button primary-button" id="btnRetry">Retry</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="./js/appStore.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Easy App Builder</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- <img id="project-logo" src="" alt="">
+        <h3 id="project-title"></h3> -->
+
+        <div class="app-configs">
+            <div class="box platform" id="android">
+                <div class="top-section">
+
+                    <img src="./assets/images/android.png" alt="">
+                    <div class="info">
+                        <span id="android-app-name"></span>
+                        <div class="version">
+                            <span>Version Name <strong id="android-version"></strong></span>
+                            <span>Version Code <strong id="android-build-number"></strong></span>
+                        </div>
+                    </div>
+
+
+                    <div class="spacer"></div>
+                    <label class="switch" title="Enable/Disable build android">
+                        <input type="checkbox" checked id="android-build-check">
+                        <span></span>
+                    </label>
+                </div>
+
+                <div class="content">
+                    <div class="row mv-25">
+                        <label>Clean before build</label>
+                        <div class="spacer"></div>
+                        <label class="switch small" title="Enable/Disable clean android before build">
+                            <input type="checkbox" checked id="android-clean-check">
+                            <span></span>
+                        </label>
+                    </div>
+                    <div class="row mv-25">
+                        <div class="col title-and-desc">
+                            <label>Scripts before builds</label>
+                            <span>This scripts will be run before all Android build scripts, each script should be in
+                                separate line, you can also use the <a href="./help.html#placeholders"
+                                    target="_blank">Placeholders</a> in your
+                                scripts.</span>
+                        </div>
+
+                        <div class="spacer"></div>
+                        <textarea class="script" rows="3" id="android-scripts-before-build-input"
+                            placeholder="Put your pre Android builds scripts here"></textarea>
+                    </div>
+
+
+                    <div class="row mv-25">
+                        <div class="col title-and-desc">
+                            <label>Scripts after builds</label>
+                            <span>This scripts will be run after all Android build scripts, each script should be in
+                                separate line, you can also use the <a href="./help.html#placeholders"
+                                    target="_blank">Placeholders</a> in your
+                                scripts.</span>
+                        </div>
+
+                        <div class="spacer"></div>
+                        <textarea class="script" rows="3" id="android-scripts-after-build-input"
+                            placeholder="Put your post Android builds scripts here"></textarea>
+                    </div>
+
+
+                    <h4>Flavors</h4>
+                    <div class="col build-section">
+                        <div class="col build-items">
+
+                        </div>
+                        <button id="btn-android-new-build" class="button secondary-button small"><img
+                                src="./assets/images/ic_plus.png" alt=""> New</button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="box platform" id="ios">
+
+                <div class="top-section">
+
+                    <img src="./assets/images/ios.png" alt="">
+                    <div class="info">
+                        <span id="ios-app-name"></span>
+                        <div class="version">
+                            <span>Version <strong id="ios-version"></strong></span>
+                            <span>Build Number <strong id="ios-build-number"></strong></span>
+                        </div>
+                    </div>
+
+
+                    <div class="spacer"></div>
+                    <label class="switch">
+                        <input type="checkbox" checked id="ios-build-check">
+                        <span></span>
+                    </label>
+                </div>
+
+                <div class="content">
+                    <div class="row mv-25">
+                        <label>Clean Before Build</label>
+                        <div class="spacer"></div>
+                        <label class="switch small">
+                            <input type="checkbox" checked id="ios-clean-check">
+                            <span></span>
+                        </label>
+                    </div>
+                    <div class="row mv-25">
+                        <label>Install Pods Before Build</label>
+                        <div class="spacer"></div>
+                        <label class="switch small">
+                            <input type="checkbox" checked id="ios-pod-check">
+                            <span></span>
+                        </label>
+                    </div>
+
+                    <div class="row mv-25">
+
+                        <div class="col title-and-desc">
+                            <label>Scripts before builds</label>
+                            <span>This scripts will be run before all iOS build scripts, each script should be in
+                                separate line, you can also use <a href="./help.html#placeholders"
+                                    target="_blank">Placeholders</a> in your
+                                scripts.</span>
+                        </div>
+
+                        <div class="spacer"></div>
+                        <textarea class="script" rows="3" id="ios-scripts-before-build-input"
+                            placeholder="Put your pre iOS builds scripts here"></textarea>
+                    </div>
+
+                    <div class="row mv-25">
+                        <div class="col title-and-desc">
+                            <label>Scripts after builds</label>
+                            <span>This scripts will be run after all iOS build scripts, each script should be in
+                                separate line, you can also use <a href="./help.html#placeholders"
+                                    target="_blank">Placeholders</a> in your
+                                scripts.</span>
+                        </div>
+                        <div class="spacer"></div>
+                        <textarea class="script" rows="3" id="ios-scripts-after-build-input"
+                            placeholder="Put your pre iOS builds scripts here"></textarea>
+                    </div>
+
+
+                    <h4>Schemes</h4>
+                    <div class="col build-section">
+                        <div class="col build-items">
+
+                        </div>
+                        <button id="btn-ios-new-build" class="button secondary-button small"><img
+                                src="./assets/images/ic_plus.png" alt=""> New</button>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="alert warning">
+            <p>Please Make sure that all pre-requirement exist:</p>
+            <ul>
+                <li>The app version is set correctly</li>
+                <li>Stable internet connection</li>
+                <li>Enough Memory</li>
+                <li>Keystores to build android</li>
+                <li>Signing settings to build iOS</li>
+                <li>Preferences settings</li>
+            </ul>
+        </div>
+
+        <button class="button primary-button mt-25" id="btn-build">Start Building</button>
+
+    </div>
+
+    <script src="./js/main.js"></script>
+    <!-- <script src="./js/helpers/hotReload.js"></script> -->
+</body>
+
+</html>

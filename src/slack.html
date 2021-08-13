@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Easy App Builder - Send to Slack</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/slack.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h4 id="title"></h4>
+        <div id="info-section" class="col">
+
+            <div class="item col">
+                <label>Channels</label>
+                <textarea type="text" id="channelsInput" rows="3"></textarea>
+                <span>Put the name of each channel to which you want to send the file in a separate line.</span>
+            </div>
+            <div class="item col">
+                <label>Comment</label>
+                <textarea type="text" id="commentInput" rows="3"></textarea>
+                <span>The message text introducing the file in specified channels.</span>
+            </div>
+
+            <div class="item row">
+                <input type="checkbox" id="zipCheck" />
+                <div class="col ml-10">
+                    <label>Zip the file before upload</label>
+                    <span class="mt-5">If you check this option, the file will be zipped before uploading.</span>
+                </div>
+
+            </div>
+
+            <div class="actions">
+                <button class="button secondary-button btnClose">Cancel</button>
+                <button class="button primary-button" id="btnUpload">Send</button>
+            </div>
+
+        </div>
+
+        <div id="proccess-section" class="col">
+            <div class="row">
+                <img src="./assets/images/zipping.gif" alt="" class="building-icon">
+                <span>Zipping the file...</span>
+            </div>
+        </div>
+
+        <div id="upload-section" class="col">
+            <span id="progress-text">Uploading ...</span>
+            <div class="progress-bar indeterminate">
+                <div class="progress-bar-value" id="progress"></div>
+            </div>
+        </div>
+
+        <div id="success-section" class="col">
+            <img src="assets/images/ic_ok.png" />
+            <span>Message sent successfully</span>
+
+            <div class="actions">
+                <button class="button primary-button btnClose">Done</button>
+            </div>
+        </div>
+        <div id="fail-section" class="col">
+
+            <img src="assets/images/ic_cancel.png" />
+            <span>Message Sent failed</span>
+            <span class="error" id="errorMessage"></span>
+
+
+            <div class="actions">
+                <button class="button secondary-button btnClose">Cancel</button>
+                <button class="button primary-button" id="btnRetry">Retry</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="./js/slack.js"></script>
+</body>
+
+</html>

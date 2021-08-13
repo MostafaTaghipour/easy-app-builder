@@ -1,0 +1,235 @@
+#project-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 15px;
+}
+
+.app-configs {
+  display: flex;
+  flex-direction: row;
+  /* background-color: red; */
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.platform {
+  flex: 1;
+  margin: 5px;
+}
+
+.platform.disabled .content {
+  opacity: 0.3;
+}
+
+.platform .top-section {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #f2f2f2;
+  padding-bottom: 15px;
+}
+
+.platform .top-section img {
+  width: 60px;
+  margin-right: 20px;
+}
+
+.platform .top-section .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.platform .top-section #android-app-name,
+.platform .top-section #ios-app-name {
+  font-weight: 900;
+}
+
+.platform .top-section .version {
+  margin-top: 10px;
+  display: flex;
+}
+
+.platform .top-section .version span {
+  margin-right: 15px;
+  font-size: 0.8rem;
+  color: #969696;
+}
+
+.platform .top-section .version span strong {
+  /* padding: 2px 4px;
+  background-color: deepskyblue;
+  text-align: center;
+  border-radius: 5px;
+  color: white; */
+  color: black;
+}
+
+.platform .row {
+  /* align-items: center; */
+}
+
+.platform .row.disabled {
+  opacity: 0.3;
+}
+
+.platform .row label {
+  font-size: 0.95rem;
+  font-weight: 300;
+}
+
+.platform .row > label {
+  margin-top: 10px;
+}
+
+.platform .row > textarea {
+  min-width: 60%;
+}
+
+.platform h4 {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.platform .build-section {
+  /* margin-top: 40px; */
+  border: 1px solid #f0f0f0;
+  padding: 10px;
+}
+
+#btn-android-new-build,
+#btn-ios-new-build {
+  align-self: flex-end;
+  margin-top: 20px;
+}
+
+#btn-android-new-build img,
+#btn-ios-new-build img {
+  width: 20px;
+  margin-right: 5px;
+  margin-left: -5px;
+  margin-top: -5px;
+  margin-bottom: -5px;
+}
+
+.build-items {
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.build-item {
+  background-color: #4acb6013;
+  padding: 10px;
+  border-radius: 5px;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  margin: 10px 0;
+}
+
+.build-item .row {
+  align-items: center;
+}
+
+.build-item .row > label {
+  margin-top: unset;
+}
+
+.build-item.disabled {
+  background-color: #e0e0e06b;
+  opacity: 0.5;
+}
+
+.build-item .icon {
+  width: 20px;
+  cursor: pointer;
+}
+
+.build-item .settings {
+  /* border-top: 1px solid #ffffff; */
+  padding-top: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.build-item .settings.hide {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+  height: 0;
+}
+
+.build-item .settings textarea {
+  margin: 5px 0 10px 0;
+  flex: 1;
+}
+
+.dist-method {
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.dist-method label {
+  /* color: gray; */
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-size: 0.85rem;
+}
+
+.dist-method select {
+  flex: 1;
+}
+
+.dist-method-desc {
+  color: gray;
+  margin-top: 5px;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  font-weight: 250;
+}
+
+.over-the-air {
+  align-items: flex-start !important;
+  margin-top: 20px;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.over-the-air h6 {
+  font-size: 0.9rem;
+  font-weight: 250;
+  margin: 0px;
+  margin-top: -5px;
+  margin-left: 5px;
+}
+.over-the-air span {
+  font-size: 0.7rem;
+  line-height: 1rem;
+  font-weight: 250;
+  color: gray;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.title-and-desc span {
+  color: gray;
+  font-size: 0.7rem;
+  margin-top: 5px;
+  line-height: 1rem;
+  font-weight: 250;
+}
+
+.build-item .title-and-desc label {
+  margin-top: 20px;
+  font-size: 0.85rem;
+}
+.build-item .title-and-desc span {
+  font-size: 0.68rem;
+}
+
+.script {
+  white-space: nowrap;
+  overflow: auto;
+  background: #252525;
+  color: #f2f2f2;
+}

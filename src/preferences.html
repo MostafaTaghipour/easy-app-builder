@@ -1,0 +1,600 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Easy App Builder - Preferences</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/preferences.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <section>
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_gear.png" /> General</div>
+            </h3>
+            <div class="box">
+                <div class="item row">
+                    <h4 class="title">Output Path</h4>
+                    <div class="spacer"></div>
+                    <div class="col">
+                        <input type="text" id="input-output-path">
+                        <p class="desc">You can also use the <a href="./help.html#placeholders"
+                                target="_blank">Placeholders</a>.</p>
+                    </div>
+                </div>
+                <div class="item row">
+                    <h4 class="title">Output Name Pattern</h4>
+                    <div class="spacer"></div>
+                    <div class="col">
+                        <input type="text" id="input-output-name-pattern">
+                        <p class="desc">You can also use the <a href="./help.html#placeholders"
+                                target="_blank">Placeholders</a>. </p>
+                    </div>
+                </div>
+                <div class="item col">
+                    <div class="row">
+                        <h4 class="title">Clean Output Folder Before Build</h4>
+                        <div class="spacer"></div>
+                        <label class="switch">
+                            <input type="checkbox" id="clean-output-check">
+                            <span></span>
+                        </label>
+                    </div>
+                    <!-- <p class="desc">For this option to work, you must install
+                        <a href="https://github.com/julienXX/terminal-notifier" target="_blank">terminal-notifier</a>.
+                    </p> -->
+                </div>
+                <div class="item col">
+                    <div class="row">
+                        <h4 class="title">Prevent System going into Sleep during the build proccess</h4>
+                        <div class="spacer"></div>
+                        <label class="switch">
+                            <input type="checkbox" id="prevent-sleep-check">
+                            <span></span>
+                        </label>
+                    </div>
+                    <!-- <p class="desc">Checking this option will prevents computer from going into automatic sleep during build proccess -->
+                    </p>
+                </div>
+                <div class="item col">
+                    <div class="row">
+                        <h4 class="title">Notify After Each Build</h4>
+                        <div class="spacer"></div>
+                        <label class="switch">
+                            <input type="checkbox" id="notify-check">
+                            <span></span>
+                        </label>
+                    </div>
+                    <!-- <p class="desc">For this option to work, you must install
+                        <a href="https://github.com/julienXX/terminal-notifier" target="_blank">terminal-notifier</a>.
+                    </p> -->
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_ota.png" /> iOS Over-The-Air Export <a
+                        href="./help.html#ota" class="help-link ml-10" target="_blank"> <img
+                            src="./assets/images/ic_help.png"> </a></div> <label class="switch"
+                    title="Enable/Disable iOS OTA Export">
+                    <input type="checkbox" checked id="ota-check" data-config-name="iosExport">
+                    <span></span>
+                </label>
+            </h3>
+            <div class="box">
+                <div class="item row" style="display: none;">
+                    <h4 class="title">Apple Team Id</h4>
+                    <div class="spacer"></div>
+                    <div class="col">
+                        <input type="text" id="input-apple-team-id">
+                        <p class="desc">Apple Team id is needed to archive project and export ipa file. You can find
+                            your apple
+                            team id <a href="https://developer.apple.com/account/#/membership/"
+                                target="_blank">here</a>.
+                        </p>
+                    </div>
+                </div>
+                <div class="item row">
+                    <h4 class="title">Over-The-Air Manifest App Url </h4>
+                    <div class="spacer"></div>
+                    <div class="col">
+                        <input type="text" id="input-over-the-air-manifest-url"
+                            placeholder="https://www.example.com/apps/foo.ipa">
+                        <p class="desc">App ipa address on your server.</p>
+                    </div>
+                </div>
+                <div class="item row">
+                    <h4 class="title">Over-The-Air Manifest App Display Image Url </h4>
+                    <div class="spacer"></div>
+                    <div class="col">
+                        <input type="text" id="input-over-the-air-manifest-display-image"
+                            placeholder="https://www.example.com/image57x57.png">
+                        <p class="desc">App Logo (in 57 x 57 pixel size) address on your server.</p>
+                    </div>
+                </div>
+                <div class="item row">
+                    <h4 class="title">Over-The-Air Manifest App Full Size Image Url </h4>
+                    <div class="spacer"></div>
+                    <div class="col">
+                        <input type="text" id="input-over-the-air-manifest-full-size-image"
+                            placeholder="https://www.example.com/image512x512.png">
+                        <p class="desc">App Logo (in 512 x 512 pixel size) address on your server.</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+
+        <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_appstore.png" /> AppStore Deploy <a
+                        href="./help.html#appStore" class="help-link ml-10" target="_blank">
+                        <img src="./assets/images/ic_help.png"> </a></div> <label class="switch"
+                    title="Enable/Disable Deploy on AppStore">
+                    <input type="checkbox" checked id="appstore-check" data-config-name="appStoreDeploy">
+                    <span></span>
+                </label>
+            </h3>
+            <div class="box">
+
+                <div class="item row">
+                    <h4 class="title">User Name </h4>
+                    <div class="spacer"></div>
+                    <div class="col">
+                        <input type="text" id="input-apple-user-name">
+                        <p class="desc">The UserName is your apple id.</p>
+                    </div>
+                </div>
+
+                <div class="item row">
+                    <h4 class="title">App Specific Password </h4>
+                    <div class="spacer"></div>
+                    <div class="col">
+                        <input type="password" id="input-apple-app-specific-password">
+                        <p class="desc">This password should be generated in your <a
+                                href="https://appleid.apple.com/account/manage" target="_blank">Apple account manager
+                                dashboard</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_google_play.png" /> GooglePlay Deploy <a
+                        href="./help.html#googlePlay" class="help-link ml-10" target="_blank"> <img
+                            src="./assets/images/ic_help.png"> </a></div> <label class="switch"
+                    title="Enable/Disable Deploy on GooglePlay">
+                    <input type="checkbox" checked id="googleplay-check" data-config-name="googlePlayDeploy">
+                    <span></span>
+                </label>
+            </h3>
+
+            <div class="box">
+
+                <div class="item row">
+                    <h4 class="title">Path To PlayStore Credentials Json File </h4>
+                    <div class="spacer"></div>
+                    <div class="col">
+                        <input type="text" id="path-playstore-credentials-json-file">
+
+                        <p class="desc">You can generate
+                            Credentials Json <a href="https://play.google.com/apps/publish/" target="_blank">here</a>.
+                            You can also use the <a href="./help.html#placeholders" target="_blank">Placeholders</a>.
+                        </p>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+
+        <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_huawei.png" />Huawei AppGallery Deploy <a
+                        href="./help.html#huawei" class="help-link ml-10" target="_blank">
+                        <img src="./assets/images/ic_help.png"> </a></div> <label class="switch"
+                    title="Enable/Disable Deploy on Huawei AppGallery">
+                    <input type="checkbox" checked id="huawei-check" data-config-name="huaweiDeploy">
+                    <span></span>
+                </label>
+            </h3>
+            <div class="box">
+
+                <div class="item row">
+                    <h4 class="title">Client Id</h4>
+                    <div class="spacer"></div>
+                    <div class="col">
+                        <input type="text" id="input-huawei-client-id">
+
+                        <p class="desc">You can create Client Id and Client Secret <a
+                                href="https://developer.huawei.com/consumer/en/service/josp/agc/index.html"
+                                target="_blank">here</a>.
+                        </p>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="item row">
+                    <h4 class="title">Client Secret</h4>
+                    <div class="spacer"></div>
+                    <div class="col">
+                        <input type="text" id="input-huawei-client-secret">
+
+                        <p class="desc">You can create Client Id and Client Secret <a
+                                href="https://developer.huawei.com/consumer/en/service/josp/agc/index.html"
+                                target="_blank">here</a>.
+                        </p>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="item row">
+                    <h4 class="title">App Id</h4>
+                    <div class="spacer"></div>
+                    <div class="col">
+                        <input type="text" id="input-huawei-app-id">
+
+                        <p class="desc">You can find App Id in <a
+                                href="https://developer.huawei.com/consumer/en/service/josp/agc/index.html"
+                                target="_blank">AppGallery Connect</a>, App Information section.
+                        </p>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_diawi.png" />Diawi Deploy <a href="./help.html#diawi"
+                        class="help-link ml-10" target="_blank">
+                        <img src="./assets/images/ic_help.png"> </a></div> <label class="switch"
+                    title="Enable/Disable Deploy Diawi">
+                    <input type="checkbox" checked id="diawi-check" data-config-name="diawiDeploy">
+                    <span></span>
+                </label>
+            </h3>
+            <div class="box">
+                <div class="item row">
+                    <h4 class="title">API Token</h4>
+                    <div class="spacer"></div>
+                    <div class="col">
+                        <input type="text" id="input-diawi-token">
+                        <p class="desc">Tokens provide an easy way to access the APIs using your account. They act like
+                            passwords to authentify yourself. You can generate your api access <a
+                                href="https://dashboard.diawi.com/profile/api" target="_blank">here</a>.</p>
+                    </div>
+                </div>
+                <div class="item row">
+                    <h4 class="title">Callback Emails</h4>
+                    <div class="spacer"></div>
+                    <div class="col">
+                        <input type="text" id="input-diawi-callback-emails">
+                        <p class="desc">The email addresses Diawi will send the result to (separated by commas).</p>
+                    </div>
+                </div>
+                <div class="item row">
+                    <h4 class="title">Callback Url</h4>
+                    <div class="spacer"></div>
+                    <div class="col">
+                        <input type="text" id="input-diawi-callback-url">
+                        <p class="desc">The URL Diawi should call with the result.</p>
+                    </div>
+                </div>
+                <div class="item col">
+                    <div class="row">
+                        <h4 class="title">Installation Notifications</h4>
+                        <div class="spacer"></div>
+                        <label class="switch">
+                            <input type="checkbox" id="diawi-installation-notifications-check">
+                            <span></span>
+                        </label>
+                    </div>
+                    <p class="desc">Receive notifications each time someone installs the app.</p>
+                </div>
+                <div class="item col">
+                    <div class="row">
+                        <h4 class="title">Find by UDID</h4>
+                        <div class="spacer"></div>
+                        <label class="switch">
+                            <input type="checkbox" id="diawi-find-by-udid-check">
+                            <span></span>
+                        </label>
+                    </div>
+                    <p class="desc">Allow your testers to find the app on Diawi's mobile web app using their UDID (iOS
+                        only).</p>
+                </div>
+                <div class="item col">
+                    <div class="row">
+                        <h4 class="title">Display on the Wall of apps</h4>
+                        <div class="spacer"></div>
+                        <label class="switch">
+                            <input type="checkbox" id="diawi-wall-of-apps-check">
+                            <span></span>
+                        </label>
+                    </div>
+                    <p class="desc">Allow Diawi to display the app's icon on the wall of apps.</p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_slack.png" />Upload to Slack <a href="./help.html#slack"
+                        class="help-link ml-10" target="_blank"> <img src="./assets/images/ic_help.png"> </a></div>
+                <label class="switch" title="Enable/Disable Send to Slack">
+                    <input type="checkbox" checked id="slack-check" data-config-name="slackUpload">
+                    <span></span>
+                </label>
+            </h3>
+            <div class="box">
+
+                <div class="item row">
+                    <h4 class="title">Token</h4>
+                    <div class="spacer"></div>
+                    <div class="col">
+                        <input type="text" id="input-slack-token">
+                        <p class="desc">
+                            Slack authentication token bearing required scopes. This Token should be generated in <a
+                                href="https://api.slack.com/apps" target="_blank">Slack Api</a>.</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_googledrive.png" /> GoogleDrive Upload <a
+                        href="./help.html#googleDrive" class="help-link ml-10" target="_blank"> <img
+                            src="./assets/images/ic_help.png"> </a></div> <label class="switch"
+                    title="Enable/Disable Upload on GoogleDrive">
+                    <input type="checkbox" checked data-config-name="googleDriveUpload">
+                    <span></span>
+                </label>
+            </h3>
+
+            <div class="box">
+
+                <div class="item row">
+                    <h4 class="title">Path To GoogleDrive Credentials Json File </h4>
+                    <div class="spacer"></div>
+                    <div class="col">
+                        <input type="text" id="path-googledrive-credentials-json-file">
+
+                        <p class="desc">You can generate
+                            Credentials Json <a href="https://console.developers.google.com/" target="_blank">here</a>.
+                            You can also use the <a href="./help.html#placeholders" target="_blank">Placeholders</a>.
+                        </p>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+
+        <!-- <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_onedrive.png" /> OneDrive Upload</div> <label
+                    class="switch" title="Enable/Disable Upload on OneDrive">
+                    <input type="checkbox" checked data-config-name="oneDriveUpload">
+                    <span></span>
+                </label>
+            </h3>
+
+        </section> -->
+
+
+        <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_dropbox.png" /> DropBox Upload <a
+                        href="./help.html#dropBox" class="help-link ml-10" target="_blank"> <img
+                            src="./assets/images/ic_help.png"> </a></div> <label class="switch"
+                    title="Enable/Disable Upload on DropBox">
+                    <input type="checkbox" checked data-config-name="dropBoxUpload">
+                    <span></span>
+                </label>
+            </h3>
+
+            <div class="box">
+
+                <div class="item row">
+                    <h4 class="title">Access Token</h4>
+                    <div class="spacer"></div>
+                    <div class="col">
+                        <input type="text" id="input-dropbox-token">
+                        <p class="desc">
+                            DropBox authentication access token. This Token should be generated in <a
+                                href="https://www.dropbox.com/developers/apps" target="_blank">DropBox App Console</a>.
+                        </p>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_telegram.png" />Send via Telegram <a
+                        href="./help.html#telegram" class="help-link ml-10"
+                        target="_blank"> <img src="./assets/images/ic_help.png"> </a></div> <label class="switch"
+                    title="Enable/Disable Send via Telegram">
+                    <input type="checkbox" checked data-config-name="sendViaTelegram">
+                    <span></span>
+                </label>
+            </h3>
+
+            <div class="box">
+
+                <div class="item row">
+                    <h4 class="title">Token</h4>
+                    <div class="spacer"></div>
+                    <div class="col">
+                        <input type="text" id="input-telegram-token">
+                        <p class="desc">
+                            Telegram token you receive from <a href="https://t.me/BotFather"
+                                target="_blank">BotFather</a>.
+                        </p>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_whatsapp.png" /> Send via WhatsApp</div> <label
+                    class="switch" title="Enable/Disable Send via WhatsApp">
+                    <input type="checkbox" checked data-config-name="sendViaWhatsApp">
+                    <span></span>
+                </label>
+            </h3>
+
+        </section>
+
+        <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_bazar.png" /> CafeBazaar Deploy</div> <label
+                    class="switch" title="Enable/Disable Deploy on CafeBazaar">
+                    <input type="checkbox" checked data-config-name="cafeBazaarDeploy">
+                    <span></span>
+                </label>
+            </h3>
+
+        </section>
+
+        <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_myket.png" /> Myket Deploy</div> <label class="switch"
+                    title="Enable/Disable Deploy on Myket">
+                    <input type="checkbox" checked data-config-name="myketDeploy">
+                    <span></span>
+                </label>
+            </h3>
+
+        </section>
+
+        <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_charkhoneh.png" /> Charkhone Deploy</div> <label
+                    class="switch" title="Enable/Disable Deploy on Charkhone">
+                    <input type="checkbox" checked data-config-name="charkhoneDeploy">
+                    <span></span>
+                </label>
+            </h3>
+
+        </section>
+
+        <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_iranapps.png" /> IranApps Deploy</div> <label
+                    class="switch" title="Enable/Disable Deploy on IranApps">
+                    <input type="checkbox" checked data-config-name="iranAppsDeploy">
+                    <span></span>
+                </label>
+            </h3>
+
+        </section>
+
+        <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_sibapp.png" /> SibApp Deploy</div> <label class="switch"
+                    title="Enable/Disable Deploy on SibApp">
+                    <input type="checkbox" checked data-config-name="sibAppDeploy">
+                    <span></span>
+                </label>
+            </h3>
+
+        </section>
+        <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_sibche.png" /> Sibche Deploy</div> <label class="switch"
+                    title="Enable/Disable Deploy on Sibche">
+                    <input type="checkbox" checked data-config-name="sibcheDeploy">
+                    <span></span>
+                </label>
+            </h3>
+
+        </section>
+        <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_anardooni.png" /> Anardooni Deploy</div> <label
+                    class="switch" title="Enable/Disable Deploy on Anardooni">
+                    <input type="checkbox" checked data-config-name="anardooniDeploy">
+                    <span></span>
+                </label>
+            </h3>
+
+        </section>
+        <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_iapps.png" /> iApps Deploy</div> <label class="switch"
+                    title="Enable/Disable Deploy on iApps">
+                    <input type="checkbox" checked data-config-name="iAppsDeploy">
+                    <span></span>
+                </label>
+            </h3>
+
+        </section>
+        <section>
+
+            <h3 class="section-title">
+                <div class="row"><img src="./assets/images/ic_sibirani.png" /> SibIrani Deploy</div> <label
+                    class="switch" title="Enable/Disable Deploy on SibIrani">
+                    <input type="checkbox" checked data-config-name="sibIraniDeploy">
+                    <span></span>
+                </label>
+            </h3>
+
+        </section>
+
+        <div class="row">
+            <button class="button secondary-button mh-10" id="btn-cancel">Cancel</button>
+            <button class="button primary-button mh-10" id="btn-save">Save</button>
+        </div>
+
+    </div>
+
+    <script src="./js/preferences.js"></script>
+    <!-- <script src="./js/helpers/hotReload.js"></script> -->
+</body>
+
+</html>

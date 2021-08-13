@@ -1,0 +1,956 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Easy App Builder - Help</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/help.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <section>
+            <h2 class="section-title">
+                How to use
+            </h2>
+            <div class="box noPadding overflowHidden">
+
+                <video id="how-to-use-video"
+                    src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+                    controls=""></video>
+
+            </div>
+        </section>
+
+
+
+        <section id="placeholders">
+            <h2 class="section-title">
+                Placeholders
+            </h2>
+            <div class="box">
+
+                <div class="item row placeholder">
+                    <label>{{userRootDir}}</label>
+                    <span>User home directory (/Users)</span>
+                </div>
+                <div class="item row placeholder">
+                    <label>{{projRootDir}}</label>
+                    <span>Current Project directory</span>
+                </div>
+                <div class="item row placeholder">
+                    <label>{{projName}}</label>
+                    <span>Current Project Name</span>
+                </div>
+                <div class="item row placeholder">
+                    <label>{{outputPath}}</label>
+                    <span>Building output path</span>
+                </div>
+                <div class="item row placeholder">
+                    <label>{{outputName}}</label>
+                    <span>Name of built file</span>
+                </div>
+                <div class="item row placeholder">
+                    <label>{{appName}}</label>
+                    <span>Application name</span>
+                </div>
+                <div class="item row placeholder">
+                    <label>{{appVariant}}</label>
+                    <span>iOS scheme / Android flavor name</span>
+                </div>
+                <div class="item row placeholder">
+                    <label>{{versionName}}</label>
+                    <span>App Version Name</span>
+                </div>
+                <div class="item row placeholder">
+                    <label>{{buildNumber}}</label>
+                    <span>Android version code / iOS build number</span>
+                </div>
+                <div class="item row placeholder">
+                    <label>{{appExtension}}</label>
+                    <span>Built file extention (ipa or apk)</span>
+                </div>
+                <div class="item row placeholder">
+                    <label>{{appPlatform}}</label>
+                    <span>Android / iOS</span>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section id="ota">
+            <h2 class="section-title">Over The Air (OTA) iOS App Release And Distribution</h2>
+            <div class="box">
+                <div>
+
+
+                    <div
+                        class="pt-4 field field--name-body field--type-text-with-summary field--label-hidden field--item">
+                        <p>Over the Air (OTA) is a method of wirelessly distributing an application and/or its
+                            updates to end- users. While the concept of updating an already installed app over the air
+                            is typical, releasing a new app for installation, especially for custom apps, is infrequent
+                            given its many advantages. This blog aims to be a primer about the little-known
+                            concept.<br><br><strong>Initiating an OTA Application Release </strong><br>
+                            Installing via an OTA update is a simple one step process of tapping open an OTA link. iOS
+                            will present you with the name of application which is bundled with provided link. On
+                            approval, application will be automatically installed or it will be updated if it is already
+                            installed.</p>
+
+                        <div class="text-center"><img alt="entpAlert" class="img-responsive b-lazy b-loaded"
+                                height="121"
+                                src="./assets/images/help/pngC3A9560CC3EDCDE8B8F9E77DE5B1EF1E1FA9799A272F8B6CE^pimgpsh_fullsize_distr.png"
+                                width="224"></div>
+
+                        <p><br>
+                            Typical OTA links will start with 'itms-services'<br>
+                            E.g.: <a
+                                href="http://itms-services://?action=download-manifest&amp;url=https://www.impigertech.com/iSOL.plist"
+                                tabindex="-1">itms-services://?action=download-manifest&amp;url=https://www.impigertech.com/iSOL.plist</a><br>
+                            It'is possible that OTA link is not detected as actual itms-services link when received via
+                            Skype or any other communication platform and it will simply redirect you to a 'https' page.
+                            In such cases, you may need to copy paste entire URL in a browser window.<br>
+                            Although, what is mentioned above is the straightforward approach, it is advisable to create
+                            a QR code for the link.<br>
+                            When you attempt to open an enterprise app (OTA installed) you will be presented with
+                            'Untrusted Enterprise Developer' notification. In such case, you need to follow below steps
+                            to Trust the Developer certificate allowing all future apps from the Enterprise developer to
+                            be installed. This can be done by tracing the menu as follows:
+                            <em>Settings'&gt;General'&gt;Device Management'&gt;Enterprise Apps'&gt;Trust Developer.</em>
+                        </p>
+
+                        <p>&nbsp;</p>
+
+                        <div class="text-center"><img alt="entpTrustView" class="img-responsive b-lazy b-loaded"
+                                height="319" src="./assets/images/help/entpTrustView.png" width="350">
+                        </div>
+
+                        <p>&nbsp;<br><strong>Creating OTA release link for iOS </strong><br>
+                            Over the Air install links for iOS can be created with help of a HTTPS server. One must
+                            follow below mentioned steps to generate OTA link for any iOS app.</p>
+
+                        <ol>
+                            <li>Generate installable or .ipa for the application</li>
+                            <li>Upload the ipa package, image57x57.png, and image512x512.png to <em>https</em> server
+                            </li>
+                            <li>Get uploaded '.ipa' file's publicly accessible direct url</li>
+                            <li>Ensure the publicly accessible https link must allow anyone to download the file</li>
+                            <li>Create new manifest plist with this'<a href="./assets/images/help/metadata.pdf"
+                                    target="_blank" tabindex="-1">metadata</a>'content (PDF)</li>
+                            <li>Update url parameter value in manifest with url obtained in step-3 (ipa, image57x57.png,
+                                and image512x512.png)</li>
+                            <li>Update bundle-identifier, bundle-version, title with app specific details</li>
+                            <li>Upload updated manifest.plist to https server</li>
+                            <li>Get uploaded manifest's publically accessible direct url</li>
+                            <li>Create itms link by prefixing
+                                "<em>itms-services://?action=download-manifest&amp;url="</em> to the manifest url
+                                obtained in step 9</li>
+                            <li>Generated itms link can be used to download and install the ipa over the air</li>
+                        </ol>
+                        <p><br>
+                            It is recommended to share the OTA URL generated in step-10 by creating a QR code or a short
+                            link using available resources.<br>
+                            &nbsp;</p>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="appStore">
+            <h2 class="section-title">Upload app package to Apple Store Connect</h2>
+
+            <div class="box">
+                <p>Recently Apple decided to <a target="_external"
+                        href="https://developer.apple.com/app-store-connect/whats-new/?id=submissionsupdate9-20">discontinue
+                        Application Loader</a> and therefore took the only GUI tool from the developers to upload their
+                    application packages to TestFlight/Apple Store. </p>
+                <p>This issue touched mostly cross-platform developers (Xamarin, React Native etc.) because if you are a
+                    native dev, Xcode still allowed you to use its <a target="_external"
+                        href="https://help.apple.com/xcode/mac/current/#/devea503dbda">archive organizer</a> to
+                    distribute apps.</p>
+
+                <h3 id="using-xcrun">Using xcrun</h3>
+                <p>You can see how to install the xcrun command line in <a target="_external"
+                        href="https://developer.apple.com/library/archive/technotes/tn2339/_index.html#top">this
+                        document</a> but most likely you already have it installed on your machine, as it comes bundled
+                    up with the Xcode.</p>
+                <p>The below is the command that you need to run in a Terminal to upload your *.ipa package to Apple
+                    Store Connect:</p>
+                <pre
+                    class=" language-bash"><code class=" language-bash">xcrun altool --upload-app --type ios --file "/Path/To/Your/Package/your_package_file.ipa" --username "&lt;user_name&gt;" --password "&lt;app_specific_password&gt;"</code></pre>
+                <p>The only trickery to the above is the <code>&lt;user_name&gt;</code> and
+                    <code>&lt;app_specific_password&gt;</code>. The <code>&lt;user_name&gt;</code> is your apple id and
+                    the password should be generated in your <a target="_external"
+                        href="https://appleid.apple.com/account/manage">Apple
+                        account manager dashboard</a>.
+                </p>
+                <p>If you've followed the above link to the account manager you should find the <em>Security
+                    </em>section in it and click on the <em>Genrate Password...</em> link under the <em>APP-SPECIFIC
+                        PASSWORD </em>(see below screenshot)</p>
+                <figure class="kg-card kg-image-card kg-card-hascaption"><img
+                        src="./assets/images/help/apple_account_manag_generate_password.png" class="kg-image">
+                    <figcaption>Apple Account Manager Generate Password</figcaption>
+                </figure>
+                <p>Next, enter your password label (in my case it's <em>Apple Store Connect</em>) and click on the
+                    <em>Create </em>button.
+                </p>
+                <p>You should then see your newly generated password (see below screen), which you should use as the
+                    <code>&lt;app_specific_password&gt;</code>.
+                </p>
+                <figure class="kg-card kg-image-card kg-card-hascaption"><img
+                        src="./assets/images/help/apple_account_manag_password_generated.png" class="kg-image">
+                    <figcaption>Apple Account Manager Password Generated</figcaption>
+                </figure>
+                <p>Fill out the blanks in the <em>xcrun</em> command from above and execute. Voila - your app should be
+                    on the way to Apple!</p>
+                <!-- <h3 id="using-transporter-app">Using Transporter app</h3>
+                <p>Firstly, download the app from the Apple Store. After launching the app you should see the below
+                    screen:</p>
+                <figure class="kg-card kg-image-card kg-card-hascaption"><img
+                        src="./assets/images/help/transporter_add_ipa_package.png"
+                        class="kg-image">
+                    <figcaption>Add *.ipa to Transporter App</figcaption>
+                </figure>
+                <p>Once you click on the <em>Add</em> button you will need to pick the *.ipa file that you want to
+                    upload from your hard drive. Having done that you should see the below screen and a <em>DELIVER
+                    </em>button next to your application's icon. Clicking on it will push the app to the Apple Store
+                    Connect.</p>
+                <figure class="kg-card kg-image-card kg-card-hascaption"><img
+                        src="./assets/images/help/transporter_ipa_package_added.png"
+                        class="kg-image">
+                    <figcaption>Deliver *.ipa package to Apple Store Connect</figcaption>
+                </figure> -->
+
+                <a class="readMore" href="https://progrunning.net/how-to-upload-ipa-app-package-to-apple-store-connect/"
+                    target="_external">
+                    Read More ...
+                </a>
+            </div>
+        </section>
+
+        <section id="googlePlay">
+            <h2 class="section-title">Publishing app to the Google Play Store</h2>
+            <div class="box">
+                <div class="ab ac ae af ag di ai aj">
+
+                    <p id="7408"
+                        class="hn ho dl hp b ek hq hr hs en ht hu hv hw hx hy hz ia ib ic id ie if ig ih ii dd ei"
+                        data-selectable-paragraph="">As you know, we won’t need to visit Play Console to deploy our app.
+                        So we will need <em class="jw">Google Play Credential file (.json)</em>. So let’s generate that
+                        file.</p>
+                    <h3 id="8d0b"
+                        class="it iu dl bo iv iw ix em iy iz ja ep jb eq jc es jd et je ev jf ew jg ey jh ji ei"
+                        data-selectable-paragraph="">Generating Google Play Credentials (.json)</h3>
+                    <ul class="">
+                        <li id="217d"
+                            class="hn ho dl hp b ek jj hr hs en jk hu hv hw jl hy hz ia jm ic id ie jn ig ih ii jo jp jq ei"
+                            data-selectable-paragraph="">Open the <a href="https://play.google.com/apps/publish/"
+                                class="bu hm" rel="noopener nofollow" target="_external">Google Play Console</a></li>
+                        <li id="463b"
+                            class="hn ho dl hp b ek jr hr hs en js hu hv hw jt hy hz ia ju ic id ie jv ig ih ii jo jp jq ei"
+                            data-selectable-paragraph="">Go to <strong class="hp jx">Settings → API Access →</strong>
+                            Click<strong class="hp jx"> ‘Create new service account’ </strong>and follow steps mentioned
+                            in a dialog.</li>
+                        <li id="8e12"
+                            class="hn ho dl hp b ek jr hr hs en js hu hv hw jt hy hz ia ju ic id ie jv ig ih ii jo jp jq ei"
+                            data-selectable-paragraph="">In GCP console, Click <strong class="hp jx">‘➕CREATE SERVICE
+                                ACCOUNT’</strong></li>
+                        <li id="241f"
+                            class="hn ho dl hp b ek jr hr hs en js hu hv hw jt hy hz ia ju ic id ie jv ig ih ii jo jp jq ei"
+                            data-selectable-paragraph="">Provide service account name → Click <strong
+                                class="hp jx">‘Create’</strong></li>
+                        <li id="b090"
+                            class="hn ho dl hp b ek jr hr hs en js hu hv hw jt hy hz ia ju ic id ie jv ig ih ii jo jp jq ei"
+                            data-selectable-paragraph="">Then select role <strong class="hp jx">‘Service Account
+                                User’</strong> (As below image) and click <strong class="hp jx">‘Continue’</strong>.
+                        </li>
+                    </ul>
+                    <figure class="gv gw gx gy gz ha cp cq paragraph-image">
+                        <div role="button" tabindex="0" class="hb hc hd he aj hf">
+                            <div class="cp cq jy">
+                                <div class="ke s hd kf">
+                                    <div class="kg kh s">
+                                        <div class="jz ka t u v kb aj at kc kd">
+                                            <img alt="" class="t u v kb aj ki kj wo ym"
+                                                src="./assets/images/help/1_XySEsJHCfzqEe2mIYdfMlg.png"
+                                                role="presentation">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+                    <ul class="">
+                        <li id="ea74"
+                            class="hn ho dl hp b ek hq hr hs en ht hu hv hw hx hy hz ia ib ic id ie if ig ih ii jo jp jq ei"
+                            data-selectable-paragraph="">Next step is optional so click <strong
+                                class="hp jx">‘Done’</strong>.</li>
+                        <li id="7404"
+                            class="hn ho dl hp b ek jr hr hs en js hu hv hw jt hy hz ia ju ic id ie jv ig ih ii jo jp jq ei"
+                            data-selectable-paragraph="">Then you’ll see list of service accounts, Click Action menu of
+                            service account which you just created → <strong class="hp jx">Create Key → </strong>Select
+                            ‘Key Type’ as <strong class="hp jx">‘JSON’ → </strong>Click <strong
+                                class="hp jx">‘CREATE’</strong></li>
+                    </ul>
+                    <figure class="gv gw gx gy gz ha cp cq paragraph-image">
+                        <div class="cp cq kl">
+                            <div class="ke s hd kf">
+                                <div class="km kh s">
+                                    <div class="jz ka t u v kb aj at kc kd"><img alt="" class="t u v kb aj ki kj wo ym"
+                                            src="./assets/images/help/1_S1aCfLLePmbliELtwoxgnw.png"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+                    <ul class="">
+                        <li id="c199"
+                            class="hn ho dl hp b ek hq hr hs en ht hu hv hw hx hy hz ia ib ic id ie if ig ih ii jo jp jq ei"
+                            data-selectable-paragraph="">Then the credentials file will be downloaded to your machine.
+                            <em class="jw">Keep that file safe.</em>
+                        </li>
+                        <li id="83c4"
+                            class="hn ho dl hp b ek jr hr hs en js hu hv hw jt hy hz ia ju ic id ie jv ig ih ii jo jp jq ei"
+                            data-selectable-paragraph="">Come back to the Play Console → Click <strong
+                                class="hp jx">‘DONE’</strong> on dialog. You’ll see service account which you just
+                            created.</li>
+                        <li id="f112"
+                            class="hn ho dl hp b ek jr hr hs en js hu hv hw jt hy hz ia ju ic id ie jv ig ih ii jo jp jq ei"
+                            data-selectable-paragraph="">Click <strong class="hp jx">“GRANT ACCESS’ → </strong>Select
+                            application which you want to allow to publish → Make sure you’ve checked ‘Releases’
+                            section.</li>
+                    </ul>
+                    <figure class="gv gw gx gy gz ha cp cq paragraph-image">
+                        <div role="button" tabindex="0" class="hb hc hd he aj hf">
+                            <div class="cp cq kn">
+                                <div class="ke s hd kf">
+                                    <div class="ko kh s">
+                                        <div class="jz ka t u v kb aj at kc kd"><img alt=""
+                                                class="t u v kb aj ki kj wo ym"
+                                                src="./assets/images/help/1_CK_6j7EBvMKVUN1TCZ3KCQ.png"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+                    <ul class="">
+                        <li id="b2cc"
+                            class="hn ho dl hp b ek hq hr hs en ht hu hv hw hx hy hz ia ib ic id ie if ig ih ii jo jp jq ei"
+                            data-selectable-paragraph="">Finally, click <strong class="hp jx">‘Apply’</strong> → Click
+                            <strong class="hp jx">‘Invite User’</strong>
+                        </li>
+                        <li id="c000"
+                            class="hn ho dl hp b ek jr hr hs en js hu hv hw jt hy hz ia ju ic id ie jv ig ih ii jo jp jq ei"
+                            data-selectable-paragraph="">Thus you’ve successfully set up Google play credentials. Keep
+                            that file with you and keep it safe.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="huawei">
+            <h2 class="section-title">Publishing app to Huawei AppGallery</h2>
+            <div class="box">
+                <div class="ab ac ae af ag di ai aj">
+
+                    <p id="bebd"
+                        class="gd ge dl gf b gg gh gi gj gk gl gm gn go gp gq gr gs gt gu gv gw gx gy gz ha dd ei"
+                        data-selectable-paragraph="">Our goal is to be able to automatically upload our new
+                        auto-generated signed APK to AppGallery.</p>
+
+                    <p id="4ec0"
+                        class="gd ge dl gf b gg gh gi gj gk gl gm gn go gp gq gr gs gt gu gv gw gx gy gz ha dd ei"
+                        data-selectable-paragraph="">To achieve our goal we will use the Publising API which is part of
+                        the AppGallery Connect APIs.</p>
+                    <h3 id="dc48"
+                        class="hc hd dl bo he hf hg gi hh hi hj gm hk hl hm hn ho hp hq hr hs ht hu hv hw hx ei"
+                        data-selectable-paragraph="">Publishing API</h3>
+                    <p id="875b"
+                        class="gd ge dl gf b gg hy gi gj gk hz gm gn go ia gq gr gs ib gu gv gw ic gy gz ha dd ei"
+                        data-selectable-paragraph="">This API allows us, among other things, to create a new application
+                        record in AppGallery, update the application information, upload files, which can be APK, RPK
+                        (for QuickApps) or AAB, but also icons and other files for the application.</p>
+                    <p id="e606"
+                        class="gd ge dl gf b gg gh gi gj gk gl gm gn go gp gq gr gs gt gu gv gw gx gy gz ha dd ei"
+                        data-selectable-paragraph="">As you can imagine, we will use the service of uploading a file, in
+                        this case a signed APK from part 1, but to make this file appear in AppGallery and ready to
+                        select it and launch a new release we will have to do some necessary steps before.</p>
+                    <p id="6431"
+                        class="gd ge dl gf b gg gh gi gj gk gl gm gn go gp gq gr gs gt gu gv gw gx gy gz ha dd ei"
+                        data-selectable-paragraph="">These are the steps to achieve it:</p>
+                    <ol class="">
+                        <li id="00f1"
+                            class="gd ge dl gf b gg gh gi gj gk gl gm gn go gp gq gr gs gt gu gv gw gx gy gz ha id ie if ei"
+                            data-selectable-paragraph="">Get a token to perform all this process.</li>
+                        <li id="6dba"
+                            class="gd ge dl gf b gg gh gi gj gk gl gm gn go gp gq gr gs gt gu gv gw gx gy gz ha dd ei"
+                            data-selectable-paragraph="">Get a valid URL to upload the signed APK.</li>
+                        <li id="6624"
+                            class="gd ge dl gf b gg gh gi gj gk gl gm gn go gp gq gr gs gt gu gv gw gx gy gz ha dd ei"
+                            data-selectable-paragraph="">Upload the APK with the URL obtained in the previous step.</li>
+                        <li id="b579"
+                            class="gd ge dl gf b gg gh gi gj gk gl gm gn go gp gq gr gs gt gu gv gw gx gy gz ha dd ei"
+                            data-selectable-paragraph="">Update the application information to announce that there is a
+                            new package uploaded in the previous step.</li>
+                    </ol>
+
+                    <p id="d59c"
+                        class="gd ge dl gf b gg gh gi gj gk gl gm gn go gp gq gr gs gt gu gv gw gx gy gz ha dd ei"
+                        data-selectable-paragraph="">Each of these steps is a Publishing API endpoint.</p>
+                    <h3 id="6dc1"
+                        class="hc hd dl bo he hf hg gi hh hi hj gm hk hl hm hn ho hp hq hr hs ht hu hv hw hx ei"
+                        data-selectable-paragraph="">Preparations</h3>
+                    <p id="b5f0"
+                        class="gd ge dl gf b gg hy gi gj gk hz gm gn go ia gq gr gs ib gu gv gw ic gy gz ha dd ei"
+                        data-selectable-paragraph="">To start consuming these endpoints we first need some important
+                        data that we will use.</p>
+                    <p id="94ba"
+                        class="gd ge dl gf b gg gh gi gj gk gl gm gn go gp gq gr gs gt gu gv gw gx gy gz ha dd ei"
+                        data-selectable-paragraph="">For step 1 we need the <strong class="gf ig">Client Id</strong> and
+                        the <strong class="gf ig">Client Secret</strong> for that we need to create a new API key in the
+                        AppGallery console. Sign in to <a
+                            href="https://developer.huawei.com/consumer/en/service/josp/agc/index.html" class="bu hb"
+                            rel="noopener nofollow" target="_external">AppGallery Connect </a>and select Users and
+                        permissions then Api Key
+                        &gt; Connect API.</p>
+                    <p id="6fb5"
+                        class="gd ge dl gf b gg gh gi gj gk gl gm gn go gp gq gr gs gt gu gv gw gx gy gz ha dd ei"
+                        data-selectable-paragraph="">Create an API Key, which can be used for all or selected
+                        applications.</p>
+                    <figure class="ii ij ik il im in cp cq paragraph-image">
+                        <div role="button" tabindex="0" class="io ip iq ir aj is">
+                            <div class="cp cq ih">
+                                <div class="iy s iq iz">
+                                    <div class="ja jb s">
+                                        <div class="it iu t u v iv aj at iw ix"><img alt=""
+                                                class="t u v iv aj jc jd rb uu"
+                                                src="./assets/images/help/0_C72ddSdU8mL1GEHe.png"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+                    <p id="269f"
+                        class="gd ge dl gf b gg gh gi gj gk gl gm gn go gp gq gr gs gt gu gv gw gx gy gz ha dd ei"
+                        data-selectable-paragraph="">After creating it you will be able to identify our <strong
+                            class="gf ig">Client Id </strong>and the <strong class="gf ig">Key</strong> that would
+                        become our <strong class="gf ig">Client Secret</strong>. This information is sensitive.</p>
+                    <p id="b836"
+                        class="gd ge dl gf b gg gh gi gj gk gl gm gn go gp gq gr gs gt gu gv gw gx gy gz ha dd ei"
+                        data-selectable-paragraph="">Another piece of information we need is the <strong
+                            class="gf ig">App Id</strong> of the application to which we will upload a new signed APK.
+                        This information is easy to find on the main page of our application in the console. We could
+                        say that this data is not sensible since it is public.</p>
+                    <figure class="ii ij ik il im in cp cq paragraph-image">
+                        <div role="button" tabindex="0" class="io ip iq ir aj is">
+                            <div class="cp cq jf">
+                                <div class="iy s iq iz">
+                                    <div class="jg jb s">
+                                        <div class="it iu t u v iv aj at iw ix"><img alt=""
+                                                class="t u v iv aj jc jd rb uu"
+                                                src="./assets/images/help/0_L5vicJGxyY-Tx_Z1.png"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+                    <p id="d955"
+                        class="gd ge dl gf b gg gh gi gj gk gl gm gn go gp gq gr gs gt gu gv gw gx gy gz ha dd ei"
+                        data-selectable-paragraph="">We are now ready to start consuming the API.</p>
+
+                </div>
+            </div>
+        </section>
+        <section id="diawi">
+            <h2 class="section-title">Distribute app to Diawi</h2>
+            <div class="box">
+                <p id="7ca4" class="gt gu cq gv b gw gx gy gz ha hb hc hd he hf hg hh hi hj hk hl hm hn ho hp hq ci dn"
+                    data-selectable-paragraph="">Why Diawi? Because it’s fit with the requirements that we need.
+                    Starting from app size, the number of installation per app, app expiration, API access and the
+                    important thing it is free! But if your needs can’t handled by Free Plan, maybe you should consider
+                    using paid plan. The detail about pricing can be found in this link <a
+                        href="https://www.diawi.com/features-services" class="ei gs" rel="noopener nofollow"
+                        target="_external">https://www.diawi.com/features-services</a></p>
+
+                <figure class="gb gc gd ge gf gg bu bv paragraph-image">
+                    <div role="button" tabindex="0" class="gh gi gj gk aj gl">
+                        <div class="bu bv hr">
+                            <div class="hx s gj hy">
+                                <div class="hz ia s">
+                                    <div class="hs ht t u v hu aj bb hv hw"><img alt="" class="t u v hu aj ib ic rz sa"
+                                            src="./assets/images/help/1_zwIARlU2RsACqfues9Vo7A.png"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <figcaption class="go gp bw bu bv gq gr dx b dy dz fm" data-selectable-paragraph="">Diawi
+                        Homepage</figcaption>
+                </figure>
+
+                <p>As part of Diawi 2, APIs are made available to all users with a Diawi account. These APIs allow the
+                    upload of an app from a continuous integration server, the integration of apps on Diawi into
+                    third-party tools
+                    <!-- more -->.
+                </p>
+                <h3 id="appupload">App upload</h3>
+                <p>The upload can be perform by a POST request. It is so simple it can be done by a curl command. All
+                    the settings (password, comment, wall, ...) are also available as parameters.</p>
+                <p>To upload file to Diawi you should generate a Diawi access token here <a target="_external"
+                        href="https://dashboard.diawi.com/profile/api">https://dashboard.diawi.com/profile/api</a></p>
+
+                <figure class="gb gc gd ge gf gg bu bv paragraph-image">
+                    <img alt="" class="t u v hu aj ib ic rz sa"
+                        src="./assets/images/help/Screen Shot 2021-08-12 at 1.46.05 AM.png">
+                    <figcaption class="go gp bw bu bv gq gr dx b dy dz fm" data-selectable-paragraph="">Diawi access
+                        token</figcaption>
+                </figure>
+
+
+                <h3 id="available-options">Available options</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Key</th>
+                            <th>Required</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>token</strong></td>
+                            <td><strong><code>true</code></strong></td>
+                            <td><code>String</code></td>
+                            <td><a href="https://dashboard.diawi.com/profile/api" target="_external">API access
+                                    token</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>file</strong></td>
+                            <td><strong><code>true</code></strong></td>
+                            <td><code>String</code></td>
+                            <td>Path to .ipa or .apk file</td>
+                        </tr>
+                        <tr>
+                            <td><strong>find_by_udid</strong></td>
+                            <td><code>false</code></td>
+                            <td><code>Boolean</code></td>
+                            <td>Allow your testers to find the app on diawi's mobile web app using their UDID
+                                (<strong>iOS only</strong>)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>wall_of_apps</strong></td>
+                            <td><code>false</code></td>
+                            <td><code>Boolean</code></td>
+                            <td>Allow diawi to display the app's icon on the wall of apps</td>
+                        </tr>
+                        <tr>
+                            <td><strong>password</strong></td>
+                            <td><code>false</code></td>
+                            <td><code>String</code></td>
+                            <td>Protect your app with a password: it will be required to access the installation page
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>comment</strong></td>
+                            <td><code>false</code></td>
+                            <td><code>String</code></td>
+                            <td>Additional information to your users on this build: the comment will be displayed on the
+                                installation page</td>
+                        </tr>
+                        <tr>
+                            <td><strong>callback_url</strong></td>
+                            <td><code>false</code></td>
+                            <td><code>String</code></td>
+                            <td>The URL diawi should call with the result</td>
+                        </tr>
+                        <tr>
+                            <td><strong>callback_emails</strong></td>
+                            <td><code>false</code></td>
+                            <td><code>String</code></td>
+                            <td>The email addresses diawi will send the result to (up to 5 separated by commas for
+                                starter/premium/enterprise accounts, 1 for free accounts). Emails should be a string.
+                                Ex: "<a href="mailto:example@test.com">example@test.com</a>,<a
+                                    href="mailto:example1@test.com">example1@test.com</a>"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>installation_notifications</strong></td>
+                            <td><code>false</code></td>
+                            <td><code>Boolean</code></td>
+                            <td>Receive notifications each time someone installs the app (only
+                                starter/premium/enterprise accounts)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>last_hope_attempts_count</strong>⁺</td>
+                            <td><code>false</code></td>
+                            <td><code>Int</code></td>
+                            <td>Number of extra attempts to check file status (default: 1, max: 5, not in range (1...5):
+                                1)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="slack">
+            <h2 class="section-title">Upload and publish a file on Slack channel</h2>
+            <div class="box">
+                <div class="crayons-article__body text-styles spec__body" data-article-id="354003" id="article-body">
+
+                    <h3>
+                        <a name="publish-a-file-on-slack">
+                        </a>
+                        Publish a file on Slack
+                    </h3>
+
+                    <h4>
+                        <a name="the-slack-app">
+                        </a>
+                        The Slack app
+                    </h4>
+
+                    <ul>
+                        <li>Go to <a href="https://api.slack.com/" target="_external">api.slack.com</a>.</li>
+                        <li>Click the <a href="https://api.slack.com/apps" target="_external">"Your Apps"</a> link at
+                            the top right.</li>
+                        <li>Authenticate, if you're not authenticated.</li>
+                        <li>
+                            <p>Click the "Create an App" button.<br>
+                                <img src="./assets/images/help/4o3dz2gx36dl569idp8p.png" alt="Slack Create App"
+                                    loading="lazy">
+                            </p>
+                        </li>
+                        <li>
+                            <p>Set the App name, e.g. "Notifier", set the "Development Slack Workspace" and click the
+                                "Create App" button.<br>
+                                <img src="./assets/images/help/2zktfiw71yfvabjzt5dq.png" alt="Slack Create App Dialog"
+                                    loading="lazy">
+                            </p>
+                        </li>
+                    </ul>
+
+                    <h4>
+                        <a name="scopes-and-permissions" href="#scopes-and-permissions">
+                        </a>
+                        Scopes and Permissions
+                    </h4>
+
+                    <ul>
+                        <li>Click the "OAuth &amp; Permissions" menu item in the "Features" section, or the
+                            "Permissions" item in the "Add features and functionality" section.
+                            Scroll down to the "Scopes" section and under the "Bot Token Scopes", click the "Add an
+                            OAuth Scope" button.
+                            In the opened dropdown search and select the "files:write" permission.
+                            <img src="./assets/images/help/7omkmuas2h2yvcllha0b.png" alt="Slack Scopes" loading="lazy">
+                        </li>
+                    </ul>
+
+                    <p>In case if you're adding a scope to an existing Slack app that is installed to workspace (e.g.
+                        you may already have a Slack app for incoming webhooks), a big yellow alert may ask you to
+                        reinstall the app to apply changes. Click the "reinstall your app" link, specify a Slack
+                        channel, and click the "Allow" button.<br>
+                        <img src="./assets/images/help/j0johsx1frsa0tvfgux3.png" alt="Slack alert" loading="lazy">
+                    </p>
+
+                    <ul>
+                        <li>Scroll up and click the "Install App to Workspace" button.</li>
+                    </ul>
+
+                    <p>You can see what permissions are given to the app. Because I've added the "files:write" scope,
+                        I'm allowing the app to upload, edit and delete files.<br>
+                        <img src="./assets/images/help/0lguy0b38puglk55ltbh.png" alt="Slack App Install to Workspace"
+                            loading="lazy">
+                    </p>
+
+                    <p>Click the "Allow" button.</p>
+
+                    <ul>
+                        <li>Copy and save the "Bot User OAuth Access Token".
+                            <img src="./assets/images/help/8mckbm3saaw9855r7awx.png" alt="Slack OAuth &amp; Permissions"
+                                loading="lazy">
+                        </li>
+                    </ul>
+                    <h4>
+                        <a name="add-the-app-to-a-channel">
+                        </a>
+                        Add the app to a channel
+                    </h4>
+
+                    <ul>
+                        <li>Open the Slack app. In the Apps section click the bot name we've created. In the "Details"
+                            section, click the "More" button, then click the "Add this app to a channel...". Choose a
+                            channel and click the "Add" button.
+                            <img src="./assets/images/help/zhbt53mah81xndv8xss3.png" alt="Slack add App to a channel"
+                                loading="lazy">
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </section>
+        <section id="googleDrive">
+            <h2 class="section-title">Upload File to Google using service account</h2>
+            <div class="box">
+                <article id="post-632"
+                    class="post-632 tech_blog type-tech_blog status-publish has-post-thumbnail hentry">
+
+
+                    <div class="entry-content" itemprop="text">
+
+                        <p style="text-align: justify;">This article is going to be a walkthrough on performing
+                            authentication with Google APIs. In order to avoid using
+                            personal Google account information when accessing the API, we going to set up a service
+                            account which is a special account representing my application. This account has a unique
+                            email address that can be used to grant permissions to.</p>
+
+                        <br>
+                        <p style="text-align: justify;">A few assumptions to begin with though:</p>
+                        <ul style="list-style-type:square">
+                            <li style="text-align: justify;">we have a Google account;</li>
+                        </ul>
+
+                        <h4><b>Create the project in Google Developers Console</b></h4>
+                        <p style="text-align: justify;">In order to be able to access Google Services, go to <a
+                                href="https://console.developers.google.com/" target="_external">Google Developers
+                                Console</a> and create a
+                            new project. Provide a name for your project and an ID, which can be generated as well.</p>
+
+                        <h4><b>Create the service account</b></h4>
+                        <p style="text-align: justify;">On the left menu, select <strong>Credentials</strong>, then
+                            <strong>Create credentials</strong>. Select <strong>Service account key</strong> from the
+                            type of credentials list. After this, choose <strong>Compute Engine default service
+                                account</strong>, <strong>JSON</strong> as a private key type and hit
+                            <strong>Create</strong> button which will trigger the download of the JSON private key.
+                        </p>
+                        <figure
+                            href="https://isd-soft.com/wp-content/uploads/2017/04/Accessing-Google-APIs-using-Service-account-in-Node.JS_1.png">
+                            <img src="./assets/images/help/Accessing-Google-APIs-using-Service-account-in-Node.JS_1.png"
+                                alt="" class="aligncenter size-full wp-image-633"
+                                srcset="https://isd-soft.com/wp-content/uploads/2017/04/Accessing-Google-APIs-using-Service-account-in-Node.JS_1.png 1273w, https://isd-soft.com/wp-content/uploads/2017/04/Accessing-Google-APIs-using-Service-account-in-Node.JS_1-300x141.png 300w, https://isd-soft.com/wp-content/uploads/2017/04/Accessing-Google-APIs-using-Service-account-in-Node.JS_1-768x361.png 768w, https://isd-soft.com/wp-content/uploads/2017/04/Accessing-Google-APIs-using-Service-account-in-Node.JS_1-1024x481.png 1024w"
+                                sizes="(max-width: 1273px) 100vw, 1273px">
+                        </figure>
+                        <figcaption style="font-size:85%;">Fig. 1 Create a service account</figcaption>
+                        <br>
+
+                        <h4><b>Enable the APIs</b></h4>
+                        <p style="text-align: justify;">Having the JSON private key created is not enough. We need to
+                            enable the APIs which will be used with this service account. To do that, select <a
+                                href="https://console.developers.google.com/apis/library" target="_external">Library</a>
+                            from the left menu
+                            and then search for “Google Drive API” and press the <strong>Enable</strong> button. Now, on
+                            your <a href="https://console.developers.google.com/apis/dashboard"
+                                target="_external">dashboard</a> (Fig. 2), you
+                            should be able to see the APIs that were enabled and several charts which can be really
+                            useful for monitoring your activity.</p>
+                        <figure
+                            href="https://isd-soft.com/wp-content/uploads/2017/04/Accessing-Google-APIs-using-Service-account-in-Node.JS_2.png">
+                            <img src="./assets/images/help/Accessing-Google-APIs-using-Service-account-in-Node.JS_2.png"
+                                alt="" class="aligncenter size-full wp-image-634"
+                                srcset="https://isd-soft.com/wp-content/uploads/2017/04/Accessing-Google-APIs-using-Service-account-in-Node.JS_2.png 905w, https://isd-soft.com/wp-content/uploads/2017/04/Accessing-Google-APIs-using-Service-account-in-Node.JS_2-300x188.png 300w, https://isd-soft.com/wp-content/uploads/2017/04/Accessing-Google-APIs-using-Service-account-in-Node.JS_2-768x480.png 768w"
+                                sizes="(max-width: 905px) 100vw, 905px">
+                        </figure>
+                        <figcaption style="font-size:85%;">Fig. 2 Google APIs dashboard</figcaption>
+                        <br>
+
+                    </div>
+
+
+                </article>
+            </div>
+        </section>
+        <section id="dropBox">
+            <h2 class="section-title">Upload files into Dropbox</h2>
+            <div class="box">
+                <div class="n p">
+                    <div class="aq ar as at au fk aw w">
+
+
+                        <p id="ef5b" class="hw hx fm hy b gk hz ia gn ib ic id ie if ig ih ii ij ik il im in dn gi"
+                            data-selectable-paragraph="">New web applications support functionalities to store
+                            files/images/videos/etc and there are many options in executing this. One could keep it
+                            inside the database, store within the local file storage, S3 buckets, and the list goes on.
+                            Best practice would be to store it in a separate entity so that scaling is possible for both
+                            the web server and file server.</p>
+                        <p id="d996"
+                            class="hw hx fm hy b gk mj hz ia gn mk ib ic id ml ie if ig mm ih ii ij mn ik il in dn gi"
+                            data-selectable-paragraph="">In this article, I will go through the o<span
+                                id="rmm">p</span>tion of storing it in Dropbox. </p>
+                        <h2 id="505b"
+                            class="mp mq fm bb mr ms mt gm mu mv mw gp mx gq my gs mz gt na gv nb gw nc gy nd ne gi"
+                            data-selectable-paragraph="">Steps</h2>
+                        <ol class="">
+                            <li id="ff85"
+                                class="hw hx fm hy b gk nf hz ia gn ng ib ic id nh ie if ig ni ih ii ij nj ik il in nk nl nm gi"
+                                data-selectable-paragraph="">Create Dropbox App and generate App configration— Go to <a
+                                    href="https://www.dropbox.com/developers/apps" class="dt kw" rel="noopener nofollow"
+                                    target="_external">https://www.dropbox.com/developers/apps</a> and create your
+                                app.</li>
+                        </ol>
+                        <figure class="no np nq nr ns nt et eu paragraph-image">
+                            <div class="et eu nn">
+                                <div class="ny s ap nz">
+                                    <div class="oa ob s">
+                                        <div class="eg nu fc ej ef nv w kl nw nx text-center"><img alt=""
+                                                class="fc ej ef nv w oc od af us"
+                                                src="./assets/images/help/1_Kpa3itaG7zm5hHosWDwvBg.png"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <figcaption class="oe of ev et eu og oh bb b bc bd bz" data-selectable-paragraph="">Click on
+                                the “Create app” button</figcaption>
+                        </figure>
+                        <p id="6a6a"
+                            class="hw hx fm hy b gk mj hz ia gn mk ib ic id ml ie if ig mm ih ii ij mn ik il in dn gi"
+                            data-selectable-paragraph="">There isn’t much options to choose.</p>
+                        <figure class="no np nq nr ns nt et eu paragraph-image">
+                            <div role="button" tabindex="0" class="oj ok ap ol w om">
+                                <div class="et eu oi">
+                                    <div class="ny s ap nz">
+                                        <div class="on ob s">
+                                            <div class="eg nu fc ej ef nv w kl nw nx text-center"><img alt=""
+                                                    class="fc ej ef nv w oc od af us"
+                                                    src="./assets/images/help/1_9U6PCfDP23hiYegl2qLZrg.png"
+                                                    role="presentation"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <figcaption class="oe of ev et eu og oh bb b bc bd bz" data-selectable-paragraph="">Complete
+                                your app details</figcaption>
+                        </figure>
+                        <p id="2029"
+                            class="hw hx fm hy b gk mj hz ia gn mk ib ic id ml ie if ig mm ih ii ij mn ik il in dn gi"
+                            data-selectable-paragraph="">Set the Permissions settings before generating the token as it
+                            remembers the settings.</p>
+                        <figure class="no np nq nr ns nt et eu paragraph-image">
+                            <div role="button" tabindex="0" class="oj ok ap ol w om">
+                                <div class="et eu oo">
+                                    <div class="ny s ap nz">
+                                        <div class="op ob s">
+                                            <div class="eg nu fc ej ef nv w kl nw nx text-center"><img alt=""
+                                                    class="fc ej ef nv w oc od af us"
+                                                    src="./assets/images/help/1_DRHyTbbNms93q-5FFG82VQ.png"
+                                                    role="presentation"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <figcaption class="oe of ev et eu og oh bb b bc bd bz" data-selectable-paragraph="">Next, go
+                                to the Permissions tab</figcaption>
+                        </figure>
+                        <figure class="no np nq nr ns nt et eu paragraph-image">
+                            <div role="button" tabindex="0" class="oj ok ap ol w om">
+                                <div class="et eu oq">
+                                    <div class="ny s ap nz">
+                                        <div class="on ob s">
+                                            <div class="eg nu fc ej ef nv w kl nw nx text-center"><img alt=""
+                                                    class="fc ej ef nv w oc od af us"
+                                                    src="./assets/images/help/1_a2k-kI_UIoH10laOJjY76g.png"
+                                                    role="presentation"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </figure>
+                        <p id="1d71"
+                            class="hw hx fm hy b gk mj hz ia gn mk ib ic id ml ie if ig mm ih ii ij mn ik il in dn gi"
+                            data-selectable-paragraph="">Copy your token from the Settings tab. You can also re-generate
+                            for a new token here if it has been compromise. Do not check-in these information in your
+                            configuration of your code. Use the proper method to store and retrieve them.</p>
+                        <figure class="no np nq nr ns nt et eu paragraph-image">
+                            <div class="et eu or">
+                                <div class="ny s ap nz">
+                                    <div class="os ob s">
+                                        <div class="qu ur fc ej ef nv w kl nw nx text-center"><img alt=""
+                                                class="fc ej ef nv w oc od ir"
+                                                src="./assets/images/help/1_JhHrwVEdT89_lJeteWdF-Q.png"
+                                                role="presentation"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <figcaption class="oe of ev et eu og oh bb b bc bd bz" data-selectable-paragraph="">Go back
+                                to Settings tab</figcaption>
+                        </figure>
+                        <figure class="no np nq nr ns nt et eu paragraph-image">
+                            <div role="button" tabindex="0" class="oj ok ap ol w om">
+                                <div class="et eu oi">
+                                    <div class="ny s ap nz">
+                                        <div class="ot ob s">
+                                            <div class="qu ur fc ej ef nv w kl nw nx"><img alt=""
+                                                    class="fc ej ef nv w oc od ir"
+                                                    src="./assets/images/help/1_Rpc4IyuU-nai-rw_qSRoOA.png"
+                                                    role="presentation"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <figcaption class="oe of ev et eu og oh bb b bc bd bz" data-selectable-paragraph="">At the
+                                Settings tab</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="telegram">
+            <h2 class="section-title">Upload file into Telegram using bot api</h2>
+            <div class="box">
+                <article class="markdown-body entry-content container-lg" itemprop="text">
+                    <h3>The following steps describe how to create a new bot:</h3>
+                    <ul>
+                        <li>Contact @BotFather in your Telegram messenger</li>
+                        <li>To get a token, send BotFather a message that says <code>/newbot</code></li>
+                        <li>When asked for a name for your new bot choose something that ends with the word
+                            <code>bot</code>. For example, <code>my_test_bot</code>
+                        </li>
+                        <li>If your chosen name is available, BotFather will send you a token</li>
+                        <li>Save the token</li>
+                    </ul>
+                    <p>
+                    <div target="_blank" rel="noopener noreferrer" class="text-center">
+                        <img src="./assets/images/help/BotFather.jpeg" height="500" width="400" style="max-width:100%;">
+                    </div>
+                    </p>
+                    <p>Once your bot is created, you can set a Description for it. <code>Description</code> is a message
+                        in middle of the page usually describing what the bot can do.</p>
+                    <p>
+                    <div target="_blank" rel="noopener noreferrer" class="text-center"><img
+                            src="./assets/images/help/desc.jpeg" height="500" width="500" style="max-width:100%;"></div>
+                    </p>
+                    <p>To set Description for your bot in BotFather do the following:</p>
+                    <ul>
+                        <li>Send <code>/setdescription</code> to BotFather</li>
+                        <li>Select the bot for which you are writing a Description</li>
+                        <li>Change the description and send it to BotFather</li>
+                    </ul>
+                    <p>There are some other useful methods in BotFather which we won't cover in this tutorial like
+                        <code>/setcommands</code> and other.
+
+                    </p>
+
+                    <h3 id="username_to_id_bot">Obtain chat id using bot</h3>
+                    <p>To get user, group and channel chat id you can use <a href="https://t.me/username_to_id_bot"
+                            target="_blank" rel="nofollow">@username_to_id_bot</a>.<br>
+                        Send a username (channel, group or user) to this bot and get its telegram id, title and type
+                        immediately in reply.
+                    </p>
+
+                    <div class="text-center"> <img src="./assets/images/help/Screen Shot 2021-08-12 at 3.02.48 AM.png"
+                            width="300" alt="">
+                        <img src="./assets/images/help/Screen Shot 2021-08-12 at 3.03.36 AM.png" width="300" alt="">
+                    </div>
+
+                </article>
+            </div>
+        </section>
+
+
+    </div>
+
+    <script src="./js/help.js"></script>
+    <!-- <script src="./js/helpers/hotReload.js"></script> -->
+</body>
+
+</html>

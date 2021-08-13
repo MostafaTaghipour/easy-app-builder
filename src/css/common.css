@@ -1,0 +1,382 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  margin: auto;
+  max-width: 60rem;
+  padding: 2rem;
+  background-color: #f2f2f2;
+}
+
+.container {
+  /* margin-top: 20px;
+  margin-bottom: 20px; */
+  /* width: calc(100% - 40px); */
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.box {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.box.noPadding {
+  padding: 0;
+}
+
+.box.overflowHidden {
+ overflow: hidden;
+}
+
+.alert {
+  width: calc(100% - 20px);
+  padding: 0 10px;
+  border-radius: 5px;
+}
+
+.alert.warning {
+  background-color: #f5ebc7;
+  border: 1px solid #fcd959;
+  color: #8b744f;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.help-link {
+}
+.help-link img {
+  width: 20px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.mv-25 {
+  margin: 25px 0;
+}
+.mh-10 {
+  margin: 0px 10px;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+.ml-10 {
+  margin-left: 10px;
+}
+
+.mt-5 {
+  margin-top: 5px;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.mt-25 {
+  margin-top: 25px;
+}
+
+a {
+  text-decoration: none;
+  color: #007afe;
+}
+p {
+  line-height: 1.2rem;
+}
+
+textarea,
+input[type='text'],
+input[type='password'] {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  border-radius: 5px;
+  line-height: 1.5rem;
+  border: 1px solid rgb(219, 219, 219);
+  padding: 10px;
+  font-size: 0.75rem;
+  font-weight: 250;
+}
+
+select {
+  border-radius: 5px;
+  border: 1px solid rgb(219, 219, 219);
+  padding: 8px;
+  /* font-size: 0.8rem; */
+}
+
+/****** BEGIN SWITCH *******/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch.small {
+  width: 40px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch span {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+.switch.small span {
+  border-radius: 24px;
+}
+
+.switch span:before {
+  position: absolute;
+  content: '';
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.switch.small span:before {
+  height: 16px;
+  width: 16px;
+}
+
+.switch input:checked + span {
+  background-color: #4acb5f;
+}
+
+.switch input:focus + span {
+  box-shadow: 0 0 1px #4acb5f;
+}
+
+.switch input:checked + span:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.switch.small input:checked + span:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
+/****** END SWITCH *******/
+
+/******* BEGIN BUTTONS *******/
+.button {
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+  min-width: 120px;
+  border: none;
+  font-size: 1rem;
+  /* text-transform: uppercase; */
+  cursor: pointer;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button.small {
+  padding: 8px;
+  font-size: 0.9rem;
+  min-width: 80px;
+}
+
+.button:enabled:hover {
+  transform: scale(1.04);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+}
+
+.primary-button {
+  background-color: #007afe;
+  color: white;
+}
+
+.primary-button:disabled {
+  background: #dddddd;
+  color: gray;
+}
+
+.secondary-button {
+  color: #007afe;
+  border: 1px solid #007afe;
+  background: transparent;
+}
+
+.secondary-button:disabled {
+  color: gray;
+  border: 1px solid gray;
+}
+
+/******* END BUTTONS *******/
+
+/******* BEGIN PROGRESS *******/
+.lds-dual-ring {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+}
+.lds-dual-ring:after {
+  content: ' ';
+  display: block;
+  width: 25px;
+  height: 25px;
+
+  border-radius: 50%;
+  border: 4px solid #007afe;
+  border-color: #007afe transparent #007afe transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.progress-bar {
+  margin-top: 15px;
+  width: 100%;
+  height: 10px;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: rgba(5, 114, 206, 0.2);
+}
+
+.progress-bar-value {
+  height: 100%;
+  border-radius: 16px;
+  width: 0%;
+  background: #007afe;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.progress-bar.indeterminate .progress-bar-value {
+  animation: indeterminateAnimation 1.2s infinite linear;
+  transform-origin: 0% 50%;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+@keyframes indeterminateAnimation {
+  0% {
+    transform: translateX(0) scaleX(0);
+  }
+  40% {
+    transform: translateX(0) scaleX(0.4);
+  }
+  100% {
+    transform: translateX(100%) scaleX(0.5);
+  }
+}
+
+/******* END PROGRESS *******/
+
+/******* START SNACKBAR *******/
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 50%; /* Center the snackbar */
+  bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+/******* END SNACKBAR *******/

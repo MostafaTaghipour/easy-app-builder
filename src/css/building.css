@@ -1,0 +1,145 @@
+.content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: calc(100vh - 150px);
+  justify-content: space-between;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+#cancel-build-button {
+  background-color: rgb(209, 52, 25);
+}
+#logs {
+  padding: 10px;
+  width: calc(100% - 435px);
+  height: calc(100% - 20px);
+  overflow-y: auto;
+  background-color: #1b1b1b;
+  border-radius: 5px;
+}
+.log {
+  color: white;
+  font-size: 0.8rem;
+  margin: 5px 0;
+  line-height: 1rem;
+  min-height: 10px;
+}
+.log.success {
+  color: rgb(56, 197, 56);
+}
+.log.error {
+  color: rgb(236, 91, 72);
+}
+.log.nomatter {
+  color: rgb(139, 139, 139);
+  font-size: 0.7rem;
+  font-weight: 100;
+}
+
+#items {
+  width: 430px;
+  height: 100%;
+  margin-left: -20px;
+  overflow-x: visible;
+  overflow-y: auto;
+  cursor: pointer;
+}
+
+.item {
+  /* max-width: (100% - 50px);
+  width: (100% - 50px); */
+  margin-bottom: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px;
+  align-items: center;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.item.active {
+  -webkit-box-shadow: 0px 2px 15px -5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 15px -5px rgba(0, 0, 0, 0.3);
+  transform: scale(1.03);
+  z-index: 1;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.item .icon {
+  width: 60px;
+}
+
+.item .info {
+  flex: 1;
+  margin-left: 15px;
+  justify-content: space-around;
+}
+.item .title {
+  margin: 0px;
+}
+.item .subtitle {
+  margin: 0px;
+  margin-top: 10px;
+  font-size: 0.7rem;
+  color: gray;
+  font-weight: 100;
+}
+
+.item .status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.item .status .cancel {
+  transform: scale(0.7);
+  display: none;
+  margin-top: -5px;
+  margin-right: -10px;
+}
+
+.item .status .building-icon {
+  display: none;
+  width: 40px;
+  margin-top: -5px;
+  margin-right: -10px;
+}
+.item .status .pending-icon {
+  width: 40px;
+  display: none;
+}
+.item .status .done-icon {
+  width: 40px;
+  display: none;
+}
+.item .status .cancel-icon {
+  width: 40px;
+  display: none;
+}
+
+.item.passed .status .done-icon {
+  display: unset;
+}
+.item.canceled .status .cancel-icon {
+  display: unset;
+}
+.item.inProgress .status .building-icon {
+  display: unset;
+}
+.item.pending .status .pending-icon {
+  display: unset;
+}
+.item.active .status .cancel {
+  display: unset;
+}

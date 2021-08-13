@@ -1,0 +1,321 @@
+diff --git a/node_modules/app-info-parser/src/apk.js b/node_modules/app-info-parser/src/apk.js
+index 3404244..344f702 100644
+--- a/node_modules/app-info-parser/src/apk.js
++++ b/node_modules/app-info-parser/src/apk.js
+@@ -36,6 +36,8 @@ var ManifestXmlParser = require('./xml-parser/manifest');
+ 
+ var ResourceFinder = require('./resource-finder');
+ 
++var BinaryXmlParser = require('./xml-parser/binary');
++
+ var ApkParser = /*#__PURE__*/function (_Zip) {
+   _inherits(ApkParser, _Zip);
+ 
+@@ -45,12 +47,12 @@ var ApkParser = /*#__PURE__*/function (_Zip) {
+    * parser for parsing .apk file
+    * @param {String | File | Blob} file // file's path in Node, instance of File or Blob in Browser
+    */
+-  function ApkParser(file) {
++  function ApkParser(file, isBrowser) {
+     var _this;
+ 
+     _classCallCheck(this, ApkParser);
+ 
+-    _this = _super.call(this, file);
++    _this = _super.call(this, file, isBrowser);
+ 
+     if (!(_assertThisInitialized(_this) instanceof ApkParser)) {
+       return _possibleConstructorReturn(_this, new ApkParser(file));
+@@ -62,15 +64,15 @@ var ApkParser = /*#__PURE__*/function (_Zip) {
+   _createClass(ApkParser, [{
+     key: "parse",
+     value: function parse() {
+-      var _this2 = this;
++      var _this3 = this;
+ 
+       return new Promise(function (resolve, reject) {
+-        _this2.getEntries([ManifestName, ResourceName]).then(function (buffers) {
++        _this3.getEntries([ManifestName, ResourceName]).then(function (buffers) {
+           if (!buffers[ManifestName]) {
+-            throw new Error('AndroidManifest.xml can\'t be found.');
++            throw new Error("AndroidManifest.xml can't be found.");
+           }
+ 
+-          var apkInfo = _this2._parseManifest(buffers[ManifestName]);
++          var apkInfo = _this3._parseManifest(buffers[ManifestName]);
+ 
+           var resourceMap;
+ 
+@@ -78,17 +80,41 @@ var ApkParser = /*#__PURE__*/function (_Zip) {
+             resolve(apkInfo);
+           } else {
+             // parse resourceMap
+-            resourceMap = _this2._parseResourceMap(buffers[ResourceName]); // update apkInfo with resourceMap
++            resourceMap = _this3._parseResourceMap(buffers[ResourceName]); // update apkInfo with resourceMap
+ 
+             apkInfo = mapInfoResource(apkInfo, resourceMap); // find icon path and parse icon
+ 
+             var iconPath = findApkIconPath(apkInfo);
+ 
+             if (iconPath) {
+-              _this2.getEntry(iconPath).then(function (iconBuffer) {
+-                apkInfo.icon = iconBuffer ? getBase64FromBuffer(iconBuffer) : null;
+-                resolve(apkInfo);
++              _this3.getEntry(iconPath).then(function (iconBuffer) {
++                apkInfo.icon = iconBuffer ? getBase64FromBuffer(iconBuffer) : null; // is it png?
++
++                if ((apkInfo.icon.toString() || '').includes(';base64,iVBORw0K')) {
++                  // yes it is png
++                  resolve(apkInfo);
++                } else {
++                  // no it is not png but maybe xml
++                  var xml = new BinaryXmlParser(iconBuffer).parse();
++
++                  if (xml.nodeName == 'bitmap') {
++                    // xml.attributes[0].typedValue.value = 'resourceId:0x7f0d0002'
++                    var iconRef = xml.attributes[0].typedValue.value.split(':')[1].toUpperCase().replace('0X', '@');
++
++                    _this2.getEntry(resourceMap[iconRef][0]).then(function (iconBuffer) {
++                      apkInfo.icon = getBase64FromBuffer(iconBuffer);
++                      resolve(apkInfo);
++                    });
++                  } else if (xml.nodeName == 'adaptive-icon') {
++                    //todo
++                    resolve(apkInfo);
++                  } else {
++                    // exception... but when? i dont know.
++                    resolve(apkInfo);
++                  }
++                }
+               })["catch"](function (e) {
++                alert(e);
+                 apkInfo.icon = null;
+                 resolve(apkInfo);
+                 console.warn('[Warning] failed to parse icon: ', e);
+@@ -99,6 +125,7 @@ var ApkParser = /*#__PURE__*/function (_Zip) {
+             }
+           }
+         })["catch"](function (e) {
++          alert(e);
+           reject(e);
+         });
+       });
+diff --git a/node_modules/app-info-parser/src/index.js b/node_modules/app-info-parser/src/index.js
+index d3d5e50..ef7e02e 100644
+--- a/node_modules/app-info-parser/src/index.js
++++ b/node_modules/app-info-parser/src/index.js
+@@ -17,11 +17,11 @@ var AppInfoParser = /*#__PURE__*/function () {
+    * parser for parsing .ipa or .apk file
+    * @param {String | File | Blob} file // file's path in Node, instance of File or Blob in Browser
+    */
+-  function AppInfoParser(file) {
++  function AppInfoParser(file, isBrowser) {
+     _classCallCheck(this, AppInfoParser);
+ 
+     if (!file) {
+-      throw new Error('Param miss: file(file\'s path in Node, instance of File or Blob in browser).');
++      throw new Error("Param miss: file(file's path in Node, instance of File or Blob in browser).");
+     }
+ 
+     var splits = (file.name || file).split('.');
+@@ -35,11 +35,11 @@ var AppInfoParser = /*#__PURE__*/function () {
+ 
+     switch (fileType) {
+       case 'ipa':
+-        this.parser = new IpaParser(this.file);
++        this.parser = new IpaParser(this.file, isBrowser);
+         break;
+ 
+       case 'apk':
+-        this.parser = new ApkParser(this.file);
++        this.parser = new ApkParser(this.file, isBrowser);
+         break;
+     }
+   }
+diff --git a/node_modules/app-info-parser/src/ipa.js b/node_modules/app-info-parser/src/ipa.js
+index 6380cf2..7f6674d 100644
+--- a/node_modules/app-info-parser/src/ipa.js
++++ b/node_modules/app-info-parser/src/ipa.js
+@@ -34,20 +34,19 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
+ 
+ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+ 
+-var parsePlist = require('plist').parse;
++var parsePlist = require("plist").parse;
+ 
+-var parseBplist = require('bplist-parser').parseBuffer;
++var parseBplist = require("bplist-parser").parseBuffer;
+ 
+-var cgbiToPng = require('cgbi-to-png');
++var cgbiToPng = require("cgbi-to-png");
+ 
+-var Zip = require('./zip');
++var Zip = require("./zip");
+ 
+-var _require = require('./utils'),
++var _require = require("./utils"),
+     findIpaIconPath = _require.findIpaIconPath,
+-    getBase64FromBuffer = _require.getBase64FromBuffer,
+-    isBrowser = _require.isBrowser;
++    getBase64FromBuffer = _require.getBase64FromBuffer;
+ 
+-var PlistName = new RegExp('payload/.+?.app/info.plist$', 'i');
++var PlistName = new RegExp("payload/.+?.app/info.plist$", "i");
+ var ProvisionName = /payload\/.+?\.app\/embedded.mobileprovision/;
+ 
+ var IpaParser = /*#__PURE__*/function (_Zip) {
+@@ -59,12 +58,13 @@ var IpaParser = /*#__PURE__*/function (_Zip) {
+    * parser for parsing .ipa file
+    * @param {String | File | Blob} file // file's path in Node, instance of File or Blob in Browser
+    */
+-  function IpaParser(file) {
++  function IpaParser(file, isBrowser) {
+     var _this;
+ 
++  
+     _classCallCheck(this, IpaParser);
+ 
+-    _this = _super.call(this, file);
++    _this = _super.call(this, file, isBrowser);
+ 
+     if (!(_assertThisInitialized(_this) instanceof IpaParser)) {
+       return _possibleConstructorReturn(_this, new IpaParser(file));
+@@ -81,7 +81,7 @@ var IpaParser = /*#__PURE__*/function (_Zip) {
+       return new Promise(function (resolve, reject) {
+         _this2.getEntries([PlistName, ProvisionName]).then(function (buffers) {
+           if (!buffers[PlistName]) {
+-            throw new Error('Info.plist can\'t be found.');
++            throw new Error("Info.plist can't be found.");
+           }
+ 
+           var plistInfo = _this2._parsePlist(buffers[PlistName]); // parse mobile provision
+@@ -98,12 +98,12 @@ var IpaParser = /*#__PURE__*/function (_Zip) {
+               // In general, the ipa file's icon has been specially processed, should be converted
+               plistInfo.icon = iconBuffer ? getBase64FromBuffer(cgbiToPng.revert(iconBuffer)) : null;
+             } catch (err) {
+-              if (isBrowser()) {
++              if (_this2.isBrowser) {
+                 // Normal conversion in other cases
+                 plistInfo.icon = iconBuffer ? getBase64FromBuffer(window.btoa(String.fromCharCode.apply(String, _toConsumableArray(iconBuffer)))) : null;
+               } else {
+                 plistInfo.icon = null;
+-                console.warn('[Warning] failed to parse icon: ', err);
++                console.warn("[Warning] failed to parse icon: ", err);
+               }
+             }
+ 
+@@ -127,12 +127,12 @@ var IpaParser = /*#__PURE__*/function (_Zip) {
+       var result;
+       var bufferType = buffer[0];
+ 
+-      if (bufferType === 60 || bufferType === '<' || bufferType === 239) {
++      if (bufferType === 60 || bufferType === "<" || bufferType === 239) {
+         result = parsePlist(buffer.toString());
+       } else if (bufferType === 98) {
+         result = parseBplist(buffer)[0];
+       } else {
+-        throw new Error('Unknown plist buffer type.');
++        throw new Error("Unknown plist buffer type.");
+       }
+ 
+       return result;
+@@ -148,9 +148,9 @@ var IpaParser = /*#__PURE__*/function (_Zip) {
+       var info = {};
+ 
+       if (buffer) {
+-        var content = buffer.toString('utf-8');
+-        var firstIndex = content.indexOf('<?xml');
+-        var endIndex = content.indexOf('</plist>');
++        var content = buffer.toString("utf-8");
++        var firstIndex = content.indexOf("<?xml");
++        var endIndex = content.indexOf("</plist>");
+         content = content.slice(firstIndex, endIndex + 8);
+ 
+         if (content) {
+diff --git a/node_modules/app-info-parser/src/utils.js b/node_modules/app-info-parser/src/utils.js
+index 8f97845..36d551f 100644
+--- a/node_modules/app-info-parser/src/utils.js
++++ b/node_modules/app-info-parser/src/utils.js
+@@ -114,11 +114,18 @@ function findApkIconPath(info) {
+ 
+   for (var i in rulesMap) {
+     _loop(i);
+-  }
++  } // alert(JSON.stringify(maxDpiIcon));
++
+ 
+   if (Object.keys(resultMap).length === 0 || !maxDpiIcon.icon) {
++    var pngRoundIcons = info.application.roundIcon.filter(function (x) {
++      return !x.endsWith('.xml');
++    });
++    var pngIcons = info.application.icon.filter(function (x) {
++      return !x.endsWith('.xml');
++    });
+     maxDpiIcon.dpi = 120;
+-    maxDpiIcon.icon = info.application.icon[0] || '';
++    maxDpiIcon.icon = pngRoundIcons.length > 1 ? pngRoundIcons[pngRoundIcons.length - 1] : pngIcons.length > 1 ? pngIcons[pngIcons.length - 1] : info.application.icon[0] || '';
+     resultMap['applicataion-icon-120'] = maxDpiIcon.icon;
+   }
+ 
+diff --git a/node_modules/app-info-parser/src/zip.js b/node_modules/app-info-parser/src/zip.js
+index 3e869c1..6412fb9 100644
+--- a/node_modules/app-info-parser/src/zip.js
++++ b/node_modules/app-info-parser/src/zip.js
+@@ -6,28 +6,30 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
+ 
+ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+ 
+-var Unzip = require('isomorphic-unzip');
++var Unzip = require("isomorphic-unzip");
+ 
+-var _require = require('./utils'),
++var _require = require("./utils"),
+     isBrowser = _require.isBrowser,
+     decodeNullUnicode = _require.decodeNullUnicode;
+ 
+ var Zip = /*#__PURE__*/function () {
+-  function Zip(file) {
++  function Zip(file, isBrows) {
+     _classCallCheck(this, Zip);
+ 
+-    if (isBrowser()) {
+-      if (!(file instanceof window.Blob || typeof file.size !== 'undefined')) {
+-        throw new Error('Param error: [file] must be an instance of Blob or File in browser.');
++    this.isBrowser = isBrows != undefined ? isBrows : isBrowser();
++
++    if (this.isBrowser) {
++      if (!(file instanceof window.Blob || typeof file.size !== "undefined")) {
++        throw new Error("Param error: [file] must be an instance of Blob or File in browser.");
+       }
+ 
+       this.file = file;
+     } else {
+-      if (typeof file !== 'string') {
+-        throw new Error('Param error: [file] must be file path in Node.');
++      if (typeof file !== "string") {
++        throw new Error("Param error: [file] must be file path in Node.");
+       }
+ 
+-      this.file = require('path').resolve(file);
++      this.file = require("path").resolve(file);
+     }
+ 
+     this.unzip = new Unzip(this.file);
+@@ -44,7 +46,7 @@ var Zip = /*#__PURE__*/function () {
+     value: function getEntries(regexps) {
+       var _this = this;
+ 
+-      var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'buffer';
++      var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "buffer";
+       regexps = regexps.map(function (regex) {
+         return decodeNullUnicode(regex);
+       });
+@@ -67,7 +69,7 @@ var Zip = /*#__PURE__*/function () {
+     value: function getEntry(regex) {
+       var _this2 = this;
+ 
+-      var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'buffer';
++      var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "buffer";
+       regex = decodeNullUnicode(regex);
+       return new Promise(function (resolve, reject) {
+         _this2.unzip.getBuffer([regex], {

@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-start; */
+  /* flex: 1; */
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+section .section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+section.disabled .box {
+  opacity: 0.5;
+}
+
+section .section-title img {
+  width: 20px;
+  margin-right: 10px;
+}
+
+section .item {
+  border-bottom: 1px solid #f2f2f2;
+  padding: 15px 0;
+}
+section .item:last-child {
+  border-bottom: none;
+}
+
+section .item textarea,
+section .item input[type='text'],
+section .item input[type='password'],
+p {
+  min-width: 450px;
+  max-width: 450px;
+}
+
+section .item textarea,
+section .item input[type='text'],
+section .item input[type='password'] {
+  font-weight: 400;
+  font-size: 0.85rem;
+}
+
+section .item .title {
+  margin: 10px 0px 0px;
+  font-size: 0.9rem;
+  display: flex;
+}
+
+section .item .desc {
+  margin: 5px 0px;
+  font-size: 0.8rem;
+  font-weight: 250;
+  color: rgb(158, 158, 158);
+}

@@ -1,0 +1,162 @@
+#title {
+  margin-bottom: 3rem;
+}
+
+#info-section {
+  width: 100%;
+}
+#info-section .item {
+  margin-top: 25px;
+}
+#info-section .item span {
+  color: gray;
+  font-size: 0.8rem;
+  font-weight: 250;
+}
+#info-section .item label {
+  font-size: 0.9rem;
+  font-weight: 250;
+}
+
+#info-section .item input {
+  margin: 5px 0;
+}
+
+#upload-section {
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 250px;
+}
+
+#upload-section span {
+  font-weight: 250;
+  font-size: 0.9rem;
+}
+
+#proccess-section {
+  min-height: 250px;
+  justify-content: center;
+}
+#proccess-section .row {
+  align-items: center;
+}
+
+#proccess-section .building-icon {
+  width: 30px;
+  margin-right: 10px;
+}
+
+#fail-section {
+  min-height: 250px;
+  justify-content: center;
+  align-items: center;
+}
+#fail-section img {
+  width: 150px;
+  margin-bottom: 20px;
+}
+#fail-section .error {
+  margin-top: 10px;
+  color: gray;
+  font-size: 0.7rem;
+  font-weight: 250;
+}
+
+.actions {
+  margin: 3rem auto 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.actions button {
+  margin: 0 8px;
+}
+
+#success-section {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+#success-section .res {
+  align-items: center;
+  margin-left: -20px;
+}
+#success-section .res img {
+  width: 50px;
+  margin-right: 10px;
+}
+
+#success-section .url-section {
+  margin-top: 1.5rem;
+  width: calc(60%);
+  background-color: #bfbfbf80;
+  border-radius: 6px;
+  font-size: 85%;
+  line-height: 1.45;
+  overflow: auto;
+  padding: 15px 5px 15px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.url-section:hover .copyToClipboard {
+  opacity: 1 !important;
+}
+
+.copyToClipboard {
+  padding: 6px 5px;
+  background-color: #22282f;
+  border-color: #333940;
+  color: #d0d7de;
+  transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-block;
+  width: 24px;
+  opacity: 0;
+  position: absolute;
+  right: 5px;
+}
+
+.copyToClipboard:hover {
+  transform: scale(1.1);
+}
+
+#success-section .qr-section {
+  margin-top: 1rem;
+  width: 240px;
+  height: 240px;
+  overflow: hidden;
+  border-radius: 5px;
+  position: relative;
+}
+
+#success-section .qr-section #qr {
+  width: 100%;
+  height: 100%;
+}
+
+.qr-section .copyToClipboard {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  right: 10px;
+}
+
+.qr-section:hover .copyToClipboard {
+  opacity: 1 !important;
+}
+
+#success-section .actions {
+  margin-top: 1.5rem !important;
+}
