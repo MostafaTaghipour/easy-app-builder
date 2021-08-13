@@ -1,7 +1,7 @@
 const {exec, execSync, spawn} = require('child_process');
 const fs = require('fs');
 const kill = require('tree-kill');
-const commandExists = require('command-exists');
+// const commandExists = require('command-exists');
 
 let proc;
 

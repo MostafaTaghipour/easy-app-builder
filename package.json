@@ -1,6 +1,6 @@
 {
   "name": "easy-app-builder",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Build and publish your Apps as easy as pie",
   "main": "src/index.js",
   "scripts": {
@@ -64,7 +64,7 @@
     "@electron/remote": "^1.2.1",
     "@mtproto/core": "6.0.1",
     "adbkit": "^2.11.1",
-    "app-info-parser": "^1.1.3",
+    "app-info-parser": "file:./packages/app-info-parser",
     "child_process": "^1.0.2",
     "electron-context-menu": "^3.1.1",
     "electron-prompt": "^1.6.2",
