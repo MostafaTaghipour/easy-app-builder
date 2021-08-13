@@ -6,10 +6,7 @@
 easy App Builder is an release-automation library that helps you to build and publish your applications easily and visually, and also provides you with many other features and tools.
 
 In the following you watch the Easy App Builder introducing video.
-
-
-
-https://github.com/MostafaTaghipour/easy-app-builder/blob/main/src/assets/help/howItWork.mp4?raw=true
+[![VIDEO](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.aparat.com/embed/p0tK3)
 
 
 ## Features
